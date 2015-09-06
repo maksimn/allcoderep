@@ -21,8 +21,13 @@ namespace FormatTransformation.UnitTests {
         [Test]
         public void XMLFormatInitializerTest1() {
             XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest1());
+            XMLFormat xml2 = new XMLFormat();
+            xml2.SetRoot("site", 0);
+            xml2.Append(0, new XMLFormat.FileNode { id = 12, name = "news" });
 
-            Assert.True(false);
+            Boolean isEqual = xml.Equals(xml2); 
+            
+            Assert.True(isEqual);
         }
         [Test]
         public void XMLFormat_Append_Test1() {
