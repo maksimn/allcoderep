@@ -63,6 +63,7 @@
     <Compile Include="LogAnalyzerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLFormatInitializerTest1.cs" />
+    <Compile Include="XMLFormatInitializerTest2.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FormatTransformationTTD.csproj">
