@@ -74,11 +74,7 @@ public class XMLFormat : AFormat {
         return EqualityComparerHelper(this, obj, () => {
             if (root != null) {
                 XMLFormat xml = (XMLFormat)obj;
-                if (!root.Equals(xml.root)) {
-                    return false;
-                } else {
-                    return Enumerable.SequenceEqual(root.subNodes, xml.root.subNodes);
-                } 
+                return root.Equals(xml.root);
             }
             return false;
         });

@@ -3,21 +3,7 @@ using NUnit.Framework;
 
 namespace FormatTransformation.UnitTests {
     [TestFixture]
-    class AFormatTests {
-        [Test]
-        public void FindFormatInitializerTest1() {
-            FindFormat find = new FindFormat(new FindFormatInitializerTest1());
-
-            Assert.AreEqual(2, find.n);
-        }
-        [Test]
-        public void FindFormat_ToString_Test1() {
-            FindFormat find = new FindFormat(new FindFormatInitializerTest1());
-
-            String s = find.ToString();
-
-            Assert.AreEqual("2\nsite 0\nsite/news 12\n", s);
-        }
+    class XMLFormatTests {
         [Test]
         public void XMLFormatInitializerTest1() {
             XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest1());
@@ -48,7 +34,7 @@ namespace FormatTransformation.UnitTests {
             Assert.AreEqual("news", node.name);
         } 
         [Test]
-        public void XMLFormatInitializerTest2() {
+        public void XMLFormat_Equals_Test2() {
             XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest2());
             XMLFormat xml2 = new XMLFormat();
             xml2.SetRoot("deo");
@@ -85,6 +71,38 @@ namespace FormatTransformation.UnitTests {
             var node = xml.GetNode(99);
 
             Assert.AreEqual("uig", node.name);
+        }
+        [Test]
+        public void XMLFormat_GetNode_Test5() {
+            XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest2());
+
+            var node = xml.GetNode(121);
+
+            Assert.AreEqual("try", node.name);
+        }
+        [Test]
+        public void XMLFormat_GetNode_Test6() {
+            XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest2());
+
+            var node = xml.GetNode(2092);
+
+            Assert.AreEqual("qvg", node.name);
+        }
+
+        [Test]
+        public void XMLFormat_Equals_Test3() {
+            XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest2());
+            XMLFormat xml2 = new XMLFormat();
+            xml2.SetRoot("deo");
+            xml2.Append(0, new XMLFormat.DirNode { id = 36, name = "sek" });
+            xml2.Append(0, new XMLFormat.FileNode { id = 121, name = "try" });
+            xml2.Append(36, new XMLFormat.DirNode { id = 99, name = "uig" });
+            xml2.Append(36, new XMLFormat.FileNode { id = 2092, name = "qvg" });
+            xml2.Append(99, new XMLFormat.FileNode { id = 1250, name = "xoj" });
+
+            Boolean isEqual = xml.Equals(xml2);
+
+            Assert.False(isEqual);
         }
     }
 }

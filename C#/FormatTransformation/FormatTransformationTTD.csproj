@@ -44,11 +44,14 @@
     <Compile Include="AFormat.cs" />
     <Compile Include="ConsoleFindFormatInitializer.cs" />
     <Compile Include="FindFormat.cs" />
+    <Compile Include="FindToFindTransformation.cs" />
     <Compile Include="IFormatInitializer.cs" />
+    <Compile Include="ITransformation.cs" />
     <Compile Include="LogAnalyzer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLFormat.cs" />
+    <Compile Include="XmlToFindTransformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
