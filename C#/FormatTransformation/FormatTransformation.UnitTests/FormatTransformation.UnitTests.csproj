@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="FindFormatTests.cs" />
     <Compile Include="FindFormatInitializer1.cs" />
+    <Compile Include="FindToXmlTransformationTests.cs" />
     <Compile Include="LogAnalyzerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLFormatInitializer1.cs" />

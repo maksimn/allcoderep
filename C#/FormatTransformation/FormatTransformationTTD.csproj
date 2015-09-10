@@ -45,6 +45,7 @@
     <Compile Include="ConsoleFindFormatInitializer.cs" />
     <Compile Include="FindFormat.cs" />
     <Compile Include="FindToFindTransformation.cs" />
+    <Compile Include="FindToXmlTransformation.cs" />
     <Compile Include="IFormatInitializer.cs" />
     <Compile Include="ITransformation.cs" />
     <Compile Include="LogAnalyzer.cs" />

@@ -7,34 +7,37 @@ public class XmlToFindTransformation : ITransformation {
     private List<String> path = new List<String>();
     public AFormat Transform(AFormat aFormat) {
         var xml = (XMLFormat)aFormat;
-        Traverse((DirNode)xml.GetNode(0), String.Empty);
-        BSort();
+        TraverseAndBuildingFindFormat((DirNode)xml.GetNode(0), String.Empty);
+        BSortToFindFormat();
         return new FindFormat { n = id.Count, filepath = path.ToArray(), id = id.ToArray() };
     }
-    private void Traverse(DirNode dnode, String currPath) {
-        if (dnode.id == 0) {
-            id.Add(dnode.id);
-            path.Add(dnode.name);
-            for (Int32 i = 0; i < dnode.subNodes.Count; i++) {
-                var subNode = dnode.subNodes[i];
-                id.Add(subNode.id);
-                path.Add(dnode.name + "/" + subNode.name);
-                if (subNode is DirNode) {
-                    Traverse((DirNode)subNode, dnode.name + "/" + subNode.name);
-                }
+    private void WorkWithRootNode(DirNode dnode) {
+        id.Add(dnode.id);
+        path.Add(dnode.name);
+        for (Int32 i = 0; i < dnode.subNodes.Count; i++) {
+            var subNode = dnode.subNodes[i];
+            id.Add(subNode.id);
+            path.Add(dnode.name + "/" + subNode.name);
+            if (subNode is DirNode) {
+                TraverseAndBuildingFindFormat((DirNode)subNode, dnode.name + "/" + subNode.name);
             }
+        }
+    }
+    private void TraverseAndBuildingFindFormat(DirNode dnode, String currPath) {
+        if (dnode.id == 0) {
+            WorkWithRootNode(dnode);
         } else {
             for (Int32 i = 0; i < dnode.subNodes.Count; i++) {
                 var subNode = dnode.subNodes[i];
                 id.Add(subNode.id);
                 path.Add(currPath + "/" + subNode.name);
                 if (subNode is DirNode) {
-                    Traverse((DirNode)subNode, currPath + "/" + subNode.name);
+                    TraverseAndBuildingFindFormat((DirNode)subNode, currPath + "/" + subNode.name);
                 }
             }
         }
     }
-    private void BSort() {
+    private void BSortToFindFormat() {
         for (Int32 i = 0, n = id.Count; i < n; i++) {
             for (Int32 j = 0; j < n - 1; j++) {
                 if (id[j] > id[j + 1]) {

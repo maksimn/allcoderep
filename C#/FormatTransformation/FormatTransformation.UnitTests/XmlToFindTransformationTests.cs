@@ -5,7 +5,7 @@ namespace FormatTransformation.UnitTests {
     [TestFixture]
     class XmlToFindTransformationTests {
         [Test]
-        public void Test1() {
+        public void XMLFormatTest2_ToFindFormat_Test() {
             XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest2());
             ITransformation tr = new XmlToFindTransformation();
             FindFormat ff = new FindFormat();
