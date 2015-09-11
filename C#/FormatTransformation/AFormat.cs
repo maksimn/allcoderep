@@ -5,6 +5,9 @@ public abstract class AFormat {
     protected AFormat(IFormatInitializer initializer) {
         initializer.Init(this);
     }
+    public void Output(IOutput iout) {
+        iout.Output(this);
+    }
     protected static Boolean IsNull(Object obj) {
         if (obj == null) {
             return true;

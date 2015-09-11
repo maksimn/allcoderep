@@ -43,15 +43,20 @@
   <ItemGroup>
     <Compile Include="AFormat.cs" />
     <Compile Include="ConsoleFindFormatInitializer.cs" />
+    <Compile Include="ConsoleOutput.cs" />
     <Compile Include="FindFormat.cs" />
+    <Compile Include="FindFormatInitializer1.cs" />
     <Compile Include="FindToFindTransformation.cs" />
     <Compile Include="FindToXmlTransformation.cs" />
     <Compile Include="IFormatInitializer.cs" />
+    <Compile Include="IOutput.cs" />
     <Compile Include="ITransformation.cs" />
-    <Compile Include="LogAnalyzer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLFormat.cs" />
+    <Compile Include="XmlFormatFromConsole.cs" />
+    <Compile Include="XMLFormatInitializer1.cs" />
+    <Compile Include="XMLFormatInitializer2.cs" />
     <Compile Include="XmlToFindTransformation.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 public class XMLFormat : AFormat {
     public class Node {
@@ -33,8 +34,30 @@ public class XMLFormat : AFormat {
         public override Int32 GetHashCode() {
             return base.GetHashCode();
         }
+        public override String ToString() {
+            StringBuilder sb = new StringBuilder();
+            CreateResString(sb, 0, this);
+            return sb.ToString();
+        }
+        private static void CreateResString(StringBuilder sb, Int32 lvl, DirNode dnode) {
+            String gaps = new String(' ', 2 * lvl);
+            sb.Append(String.Format(gaps + "<dir name='{0}' id='{1}'>\n", dnode.name, dnode.id));
+            for (Int32 i = 0; i < dnode.subNodes.Count; i++) {
+                var snode = dnode.subNodes[i];
+                if (snode is FileNode) {
+                    sb.Append(gaps + "  " + snode);
+                } else {
+                    CreateResString(sb, lvl + 1, (DirNode)snode);
+                }
+            }
+            sb.Append(gaps + "</dir>\n");
+        }
     }
-    public class FileNode : Node {}
+    public class FileNode : Node {
+        public override String ToString() {
+            return String.Format("<file name='{0}' id='{1}'/>\n", name, id);
+        }
+    }
     private DirNode root;
     public XMLFormat() {}
     public XMLFormat(IFormatInitializer initializer) : base(initializer) { }
@@ -81,5 +104,8 @@ public class XMLFormat : AFormat {
     }
     public override Int32 GetHashCode() {
         return base.GetHashCode();
+    }
+    public override String ToString() {
+        return root.ToString();
     }
 }

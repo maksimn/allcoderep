@@ -88,7 +88,6 @@ namespace FormatTransformation.UnitTests {
 
             Assert.AreEqual("qvg", node.name);
         }
-
         [Test]
         public void XMLFormat_Equals_Test3() {
             XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest2());
@@ -103,6 +102,24 @@ namespace FormatTransformation.UnitTests {
             Boolean isEqual = xml.Equals(xml2);
 
             Assert.False(isEqual);
+        }    
+        [Test]
+        public void XMLFormat_ToString_Test1() {
+            XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest1());
+            String estimatedRes = "<dir name='site' id='0'>\n  <file name='news' id='12'/>\n</dir>\n";
+
+            Boolean isEqual = xml.ToString() == estimatedRes;
+
+            Assert.True(isEqual);
         }
+        [Test]
+        public void XMLFormat_ToString_Test2() {
+            XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest2());
+
+            String res = xml.ToString();
+
+            Assert.True(true);
+        }
+        
     }
 }
