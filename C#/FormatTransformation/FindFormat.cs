@@ -29,4 +29,9 @@ public class FindFormat : AFormat {
         }
         return sb.ToString();
     }
+    protected override string Name {
+        get {
+            return "find";
+        }
+    }
 }

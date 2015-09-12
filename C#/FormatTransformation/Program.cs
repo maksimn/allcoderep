@@ -2,9 +2,13 @@
 
 class Program {
     static void Main(String[] args) {
-        XMLFormat xml = new XMLFormat(new XmlFormatFromConsole());
+        String formatName1 = Console.ReadLine(), formatName2 = Console.ReadLine();
+        AFormat format = FormatFactory.CreateFormat(formatName1);
 
-        string s = xml.ToString();
-        xml.Output(new ConsoleOutput());
+        if (formatName1 == formatName2) {
+            format.Output(new ConsoleOutput());
+        } else {
+            format.TransformTo(formatName2).Output(new ConsoleOutput());
+        }
     }
 }

@@ -108,4 +108,9 @@ public class XMLFormat : AFormat {
     public override String ToString() {
         return root.ToString();
     }
+    protected override string Name {
+        get {
+            return "xml";
+        }
+    }
 }

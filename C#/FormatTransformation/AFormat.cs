@@ -38,4 +38,10 @@ public abstract class AFormat {
         }
         return cmp();
     }
+    public AFormat TransformTo(String fName) {
+        ITransformation step1 = TransformationFactory.CreateTransformation(Name, "find"), 
+            step2 = TransformationFactory.CreateTransformation("find", fName);        
+        return step2.Transform(step1.Transform(this));
+    }
+    protected abstract String Name { get; }
 }
