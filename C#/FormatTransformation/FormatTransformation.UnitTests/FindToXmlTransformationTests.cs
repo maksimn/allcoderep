@@ -1,4 +1,5 @@
 ﻿using System;
+using PathInfo = FindFormat.PathInfo;
 using NUnit.Framework;
 
 namespace FormatTransformation.UnitTests {
@@ -8,17 +9,15 @@ namespace FormatTransformation.UnitTests {
         public void FindToXml_Test1() {
             XMLFormat xml = new XMLFormat(new XMLFormatInitializerTest2());
             ITransformation tr = new FindToXmlTransformation();
-            FindFormat ff = new FindFormat();
+            FindFormat ff = new FindFormat(); 
             ff.n = 6;
-            ff.id = new Int32[] { 0, 36, 99, 121, 370, 2092 };
-            ff.filepath = new String[] {
-                "deo",
-                "deo/sek",
-                "deo/sek/uig",
-                "deo/try",
-                "deo/sek/uig/xoj",
-                "deo/sek/qvg"
-            };
+            ff.pathInfo = new PathInfo[6];
+            ff.pathInfo[0] = new PathInfo("deo", 0);
+            ff.pathInfo[1] = new PathInfo("deo/sek", 36);
+            ff.pathInfo[2] = new PathInfo("deo/sek/uig", 99);
+            ff.pathInfo[3] = new PathInfo("deo/try", 121);
+            ff.pathInfo[4] = new PathInfo("deo/sek/uig/xoj", 370);
+            ff.pathInfo[5] = new PathInfo("deo/sek/qvg", 2092);
 
             var resXml = tr.Transform(ff);
 
@@ -34,8 +33,9 @@ namespace FormatTransformation.UnitTests {
             ITransformation tr = new FindToXmlTransformation();
             FindFormat ff = new FindFormat();
             ff.n = 2;
-            ff.id = new Int32[] { 0, 12 };
-            ff.filepath = new String[] { "site", "site/news" };
+            ff.pathInfo = new PathInfo[2];
+            ff.pathInfo[0] = new PathInfo("site", 0);
+            ff.pathInfo[1] = new PathInfo("site/news", 12);
 
             var resXml = tr.Transform(ff);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using PathInfo = FindFormat.PathInfo;
 using NUnit.Framework;
 
 namespace FormatTransformation.UnitTests {
@@ -23,8 +24,9 @@ namespace FormatTransformation.UnitTests {
             FindFormat find = new FindFormat(new FindFormatInitializerTest1());
             FindFormat find1 = new FindFormat();
             find1.n = 2;
-            find1.id = new Int32[] { 0, 12 };
-            find1.filepath = new String[] { "site", "site/news" };
+            find1.pathInfo = new PathInfo[2];
+            find1.pathInfo[0] = new PathInfo("site", 0);
+            find1.pathInfo[1] = new PathInfo("site/news", 12);
 
             Boolean res = find.Equals(find1);
 
@@ -35,8 +37,9 @@ namespace FormatTransformation.UnitTests {
             FindFormat find = new FindFormat(new FindFormatInitializerTest1());
             FindFormat find1 = new FindFormat();
             find1.n = 2;
-            find1.id = new Int32[] { 0, 10 };
-            find1.filepath = new String[] { "site", "site/news" };
+            find1.pathInfo = new PathInfo[2];
+            find1.pathInfo[0] = new PathInfo("site", 0);
+            find1.pathInfo[1] = new PathInfo("site/news", 10);
 
             Boolean res = find.Equals(find1);
 
