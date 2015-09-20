@@ -13,24 +13,21 @@ public class XmlToFindTransformation : ITransformation {
     }
     private void WorkWithRootNode(DirNode dnode) {
         pathInfo.Add(new PathInfo(dnode.name, dnode.id));
-        for (Int32 i = 0; i < dnode.subNodes.Count; i++) {
-            var subNode = dnode.subNodes[i];
-            pathInfo.Add(new PathInfo(dnode.name + "/" + subNode.name, subNode.id));
-            if (subNode is DirNode) {
-                TraverseAndBuildingFindFormat((DirNode)subNode, dnode.name + "/" + subNode.name);
-            }
-        }
+        WorkWithSubNodes(dnode, dnode.name);
     }
     private void TraverseAndBuildingFindFormat(DirNode dnode, String currPath) {
         if (dnode.id == 0) {
             WorkWithRootNode(dnode);
         } else {
-            for (Int32 i = 0; i < dnode.subNodes.Count; i++) {
-                var subNode = dnode.subNodes[i];
-                pathInfo.Add(new PathInfo(currPath + "/" + subNode.name, subNode.id));
-                if (subNode is DirNode) {
-                    TraverseAndBuildingFindFormat((DirNode)subNode, currPath + "/" + subNode.name);
-                }
+            WorkWithSubNodes(dnode, currPath);
+        }
+    }
+    private void WorkWithSubNodes(DirNode dnode, String currPath) {
+        for (Int32 i = 0; i < dnode.subNodes.Count; i++) {
+            var subNode = dnode.subNodes[i];
+            pathInfo.Add(new PathInfo(currPath + "/" + subNode.name, subNode.id));
+            if (subNode is DirNode) {
+                TraverseAndBuildingFindFormat((DirNode)subNode, currPath + "/" + subNode.name);
             }
         }
     }
