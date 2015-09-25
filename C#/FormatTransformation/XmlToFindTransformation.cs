@@ -13,10 +13,6 @@ public class XmlToFindTransformation : ITransformation {
         pathInfo.Sort();
         return new FindFormat { n = pathInfo.Count, pathInfo = pathInfo.ToArray() };
     }
-    private void WorkWithRootNode(DirNode dnode) {
-        pathInfo.Add(new PathInfo(dnode.name, dnode.id));
-        WorkWithSubNodes(dnode, dnode.name);
-    }
     private void WorkWithSubNodes(DirNode dnode, String currPath) {
         for (Int32 i = 0; i < dnode.subNodes.Count; i++) {
             var subNode = dnode.subNodes[i];
