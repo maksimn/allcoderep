@@ -4,9 +4,8 @@ using DirNode = XMLFormat.DirNode;
 using FileNode = XMLFormat.FileNode;
 
 public class FindToXmlTransformation : ITransformation {
-    private FindFormat find = null;
-    private Char[] separ = new Char[] { '/' };
-    private XMLFormat xml = null;
+    private FindFormat find;
+    private XMLFormat xml;
     public AFormat Transform(AFormat aFormat) {
         find = (FindFormat)aFormat;
         xml = new XMLFormat();
