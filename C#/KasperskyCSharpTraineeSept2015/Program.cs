@@ -57,10 +57,13 @@ interface IOutputable {
 class ConsoleOutputExample1 : IOutputable {
     public void Output(List<String> list) {
         HashSet<String> set = new HashSet<String>();
-        for (Int32 i = 0; i < list.Count; ) {
+        for (Int32 i = 0, j = 0; i < list.Count; ) {
             String anagramGroup = WordAnagramComparer.GetAnagramString(list[i]);
-            Int32 j = 0;
-            for (j = 0; i + j < list.Count; j++) {
+            for (j = 0; i + j <= list.Count; j++) {
+                if (i + j == list.Count) {
+                    PrintLineFromSet(set);
+                    return;
+                }
                 if (AreWordsFromSameAnagramGroup(list[i], list[i + j])) {
                     set.Add(list[i + j]);
                 } else {
@@ -68,10 +71,6 @@ class ConsoleOutputExample1 : IOutputable {
                     PrintLineFromSet(set);
                     break;
                 }
-            }
-            if (i >= list.Count - 1) {
-                PrintLineFromSet(set);
-                break;
             }
         }
     }
