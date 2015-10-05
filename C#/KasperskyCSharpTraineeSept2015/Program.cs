@@ -2,18 +2,23 @@
 using System.IO;
 using System.Collections.Generic;
 
-class WordAnagramComparer : IComparer<KeyValuePair<String, String>> {
-    public Int32 Compare(KeyValuePair<String, String> kv1, KeyValuePair<String, String> kv2) {
-        return String.Compare(kv1.Key, kv2.Key, StringComparison.Ordinal);
+class WordAnagramComparer : IComparer<String> {
+    public Int32 Compare(String str1, String str2) {
+        return String.Compare(GetAnagramString(str1), GetAnagramString(str2), StringComparison.Ordinal);
+    }
+    public static String GetAnagramString(String word) {
+        Char[] chars = word.ToLowerInvariant().ToCharArray();
+        Array.Sort(chars);
+        return new String(chars);
     }
 }
 
 interface IInitializer {
-    void Init(List<KeyValuePair<String, String>> list);
+    void Init(List<String> list);
 }
 
 class StringReaderInitializer : IInitializer {
-    public void Init(List<KeyValuePair<String, String>> list) {
+    public void Init(List<String> list) {
         String inputString = "абак\n" +
             "ток\n" +
             "вертикаль\n" +
@@ -21,24 +26,20 @@ class StringReaderInitializer : IInitializer {
             "кильватер\n" +
             "колун\n" +
             "кот\n" +
-            "уклон\n";
+            "уклон\n" +
+            "эюя\n";
         StringReader sr = new StringReader(inputString);
         String word;
         while ((word = sr.ReadLine()) != null) {
-            list.Add(new KeyValuePair<String, String>(GetAnagramString(word), word));
+            list.Add(word);
         }
-    }
-    private static String GetAnagramString(String word) {
-        Char[] chars = word.ToLowerInvariant().ToCharArray();
-        Array.Sort(chars);
-        return new String(chars);
     }
 }
 
 class TaskSolver {
-    private List<KeyValuePair<String, String>> list;
+    private List<String> list;
     public TaskSolver(IInitializer initializer) {
-        list = new List<KeyValuePair<String, String>>();
+        list = new List<String>();
         initializer.Init(list);
     }
     public void Process() {
@@ -50,14 +51,39 @@ class TaskSolver {
 }
 
 interface IOutputable {
-    void Output(List<KeyValuePair<String, String>> list);
+    void Output(List<String> list);
 }
 
 class ConsoleOutputExample1 : IOutputable {
-    public void Output(List<KeyValuePair<String, String>> list) {
-        foreach (var element in list) {
-            Console.WriteLine(String.Format("{0} {1}", element.Key, element.Value));
+    public void Output(List<String> list) {
+        HashSet<String> set = new HashSet<String>();
+        for (Int32 i = 0; i < list.Count; ) {
+            String anagramGroup = WordAnagramComparer.GetAnagramString(list[i]);
+            Int32 j = 0;
+            for (j = 0; i + j < list.Count; j++) {
+                if (AreWordsFromSameAnagramGroup(list[i], list[i + j])) {
+                    set.Add(list[i + j]);
+                } else {
+                    i = i + j;
+                    PrintLineFromSet(set);
+                    break;
+                }
+            }
+            if (i >= list.Count - 1) {
+                PrintLineFromSet(set);
+                break;
+            }
         }
+    }
+    private static void PrintLineFromSet(HashSet<String> set) {
+        foreach (var word in set) {
+            Console.Write(word + " ");
+        }
+        Console.Write("\n");
+        set.Clear();
+    }
+    private static Boolean AreWordsFromSameAnagramGroup(String word1, String word2) {
+        return WordAnagramComparer.GetAnagramString(word1) == WordAnagramComparer.GetAnagramString(word2);
     }
 }
 
