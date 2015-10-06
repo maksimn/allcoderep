@@ -41,8 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleOutputExample1.cs" />
+    <Compile Include="FileForReading.cs" />
+    <Compile Include="FileOutput.cs" />
+    <Compile Include="IInitializer.cs" />
+    <Compile Include="IOutputable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringReaderInitializer.cs" />
+    <Compile Include="TaskSolver.cs" />
+    <Compile Include="WordAnagramComparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
