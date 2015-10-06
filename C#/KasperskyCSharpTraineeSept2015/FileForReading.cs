@@ -8,10 +8,11 @@ class FileForReading : IInitializer {
         this.fileName = fileName;
     }
     public void Init(List<String> list) {
-        StreamReader streamReader = new StreamReader(fileName);
-        String word;
-        while ((word = streamReader.ReadLine()) != null) {
-            list.Add(word);
-        }
+        using (StreamReader streamReader = new StreamReader(fileName)) {
+            String word;
+            while ((word = streamReader.ReadLine()) != null) {
+                list.Add(word);
+            }
+        }        
     }
 }
