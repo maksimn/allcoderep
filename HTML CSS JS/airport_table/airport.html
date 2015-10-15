@@ -28,7 +28,7 @@
         .left {
             display: inline-block;
             width: 200px;
-            height: 1000px;
+            height: 500px;
             background-color: #53c862;
         }
         .main {
@@ -52,6 +52,7 @@
             color: white;
             line-height: 3em;
         }
+
         table.airporttable {
             position: relative;
             top: 15px;
@@ -75,6 +76,17 @@
         </div><!--
      --><div class="main">
             <table class="airporttable">
+                <colgroup>
+                    <col class="col1" />
+                    <col class="col2" />
+                    <col class="col3" />
+                    <col class="col4" />
+                    <col class="col5" />
+                    <col class="col6" />
+                    <col class="col7" />
+                    <col class="col8" />
+                    <col class="col9" />
+                </colgroup>
                 <caption>
                     <label>Табло аэропорта</label><br />
                     <input id="departures" type="checkbox" checked /><label>Вылеты </label>
@@ -82,259 +94,259 @@
                 </caption>
                 <thead>
                     <tr>
-                        <th class="col1">Тип рейса</th>
-                        <th class="col2">№ рейса</th>
-                        <th class="col3">Авиакомпания</th>
-                        <th class="col4">Лого</th>
-                        <th class="col5">Тип воздушного судна</th>
-                        <th class="col6">Аэропорт назначения</th>
-                        <th class="col7">Плановое время</th>
-                        <th class="col8">Статус рейса</th>
-                        <th class="col9">Примечание</th>
+                        <th>Тип рейса</th>
+                        <th>№ рейса</th>
+                        <th>Авиакомпания</th>
+                        <th>Лого</th>
+                        <th>Тип воздушного судна</th>
+                        <th>Аэропорт назначения</th>
+                        <th>Плановое время</th>
+                        <th>Статус рейса</th>
+                        <th>Примечание</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">АВ 1234</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Ту-204-100В</td>
-                        <td class="col6">Нижний Новгород</td>
-                        <td class="col7">10:30</td>
-                        <td class="col8">Регистрация</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>АВ 1234</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Ту-204-100В</td>
+                        <td>Нижний Новгород</td>
+                        <td>10:30</td>
+                        <td>Регистрация</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">SN 8843</td>
-                        <td class="col3">Люфтганза</td>
-                        <td class="col4"><img src="logos/lufthansa.jpg" /></td>
-                        <td class="col5">Airbus-A380</td>
-                        <td class="col6">Берлин</td>
-                        <td class="col7">10:33</td>
-                        <td class="col8">Регистрация</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>SN 8843</td>
+                        <td>Люфтганза</td>
+                        <td><img src="logos/lufthansa.jpg" /></td>
+                        <td>Airbus-A380</td>
+                        <td>Берлин</td>
+                        <td>10:33</td>
+                        <td>Регистрация</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">GI 1944</td>
-                        <td class="col3">Бритиш Эйрвэйс</td>
-                        <td class="col4"><img src="logos/british_airways.jpg" /></td>
-                        <td class="col5">Boeing-777</td>
-                        <td class="col6">Мадрид</td>
-                        <td class="col7">10:37</td>
-                        <td class="col8">Регистрация</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>GI 1944</td>
+                        <td>Бритиш Эйрвэйс</td>
+                        <td><img src="logos/british_airways.jpg" /></td>
+                        <td>Boeing-777</td>
+                        <td>Мадрид</td>
+                        <td>10:37</td>
+                        <td>Регистрация</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">PT 9954</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Ту-134</td>
-                        <td class="col6">Краснодар</td>
-                        <td class="col7">10:40</td>
-                        <td class="col8">Регистрация</td>
-                        <td class="col9">ABCD1234/XYZU6789</td>
+                        <td>Вылет</td>
+                        <td>PT 9954</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Ту-134</td>
+                        <td>Краснодар</td>
+                        <td>10:40</td>
+                        <td>Регистрация</td>
+                        <td>ABCD1234/XYZU6789</td>
                     </tr>
                     <tr>
-                        <td class="col1">Прилёт</td>
-                        <td class="col2">NG 1492</td>
-                        <td class="col3">Люфтганза</td>
-                        <td class="col4"><img src="logos/lufthansa.jpg" /></td>
-                        <td class="col5">Airbus-A321</td>
-                        <td class="col6">Франкфурт-на-Майне</td>
-                        <td class="col7">10:42</td>
-                        <td class="col8">Летит</td>
-                        <td class="col9"></td>
+                        <td>Прилёт</td>
+                        <td>NG 1492</td>
+                        <td>Люфтганза</td>
+                        <td><img src="logos/lufthansa.jpg" /></td>
+                        <td>Airbus-A321</td>
+                        <td>Франкфурт-на-Майне</td>
+                        <td>10:42</td>
+                        <td>Летит</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Прилёт</td>
-                        <td class="col2">GN 1490</td>
-                        <td class="col3">Люфтганза</td>
-                        <td class="col4"><img src="logos/lufthansa.jpg" /></td>
-                        <td class="col5">Airbus-A320</td>
-                        <td class="col6">Париж</td>
-                        <td class="col7">10:45</td>
-                        <td class="col8">Летит</td>
-                        <td class="col9"></td>
+                        <td>Прилёт</td>
+                        <td>GN 1490</td>
+                        <td>Люфтганза</td>
+                        <td><img src="logos/lufthansa.jpg" /></td>
+                        <td>Airbus-A320</td>
+                        <td>Париж</td>
+                        <td>10:45</td>
+                        <td>Летит</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">KC 0123</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Ил-86</td>
-                        <td class="col6">Новосибирск</td>
-                        <td class="col7">10:55</td>
-                        <td class="col8">Ожидание посадки</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>KC 0123</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Ил-86</td>
+                        <td>Новосибирск</td>
+                        <td>10:55</td>
+                        <td>Ожидание посадки</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">RT 4471</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Airbus-A321</td>
-                        <td class="col6">Ираклион</td>
-                        <td class="col7">10:59</td>
-                        <td class="col8">Посадка окончена</td>
-                        <td class="col9">EFGH5678/OPQR9012</td>
+                        <td>Вылет</td>
+                        <td>RT 4471</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Airbus-A321</td>
+                        <td>Ираклион</td>
+                        <td>10:59</td>
+                        <td>Посадка окончена</td>
+                        <td>EFGH5678/OPQR9012</td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">SB 2103</td>
-                        <td class="col3">Бритиш Эйрвэйс</td>
-                        <td class="col4"><img src="logos/british_airways.jpg" /></td>
-                        <td class="col5">Boeing-747</td>
-                        <td class="col6">Рим</td>
-                        <td class="col7">11:05</td>
-                        <td class="col8">Посадка окончена</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>SB 2103</td>
+                        <td>Бритиш Эйрвэйс</td>
+                        <td><img src="logos/british_airways.jpg" /></td>
+                        <td>Boeing-747</td>
+                        <td>Рим</td>
+                        <td>11:05</td>
+                        <td>Посадка окончена</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Прилёт</td>
-                        <td class="col2">СС 1122</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Бе-200</td>
-                        <td class="col6">Геленджик</td>
-                        <td class="col7">11:10</td>
-                        <td class="col8">Летит</td>
-                        <td class="col9"></td>
+                        <td>Прилёт</td>
+                        <td>СС 1122</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Бе-200</td>
+                        <td>Геленджик</td>
+                        <td>11:10</td>
+                        <td>Летит</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">FT 1718</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Airbus-A321</td>
-                        <td class="col6">Родес</td>
-                        <td class="col7">11:15</td>
-                        <td class="col8">Посадка окончена</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>FT 1718</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Airbus-A321</td>
+                        <td>Родес</td>
+                        <td>11:15</td>
+                        <td>Посадка окончена</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">EP 2020</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Ту-154Д</td>
-                        <td class="col6">Санкт-Петербург</td>
-                        <td class="col7">11:20</td>
-                        <td class="col8">Ожидание посадки</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>EP 2020</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Ту-154Д</td>
+                        <td>Санкт-Петербург</td>
+                        <td>11:20</td>
+                        <td>Ожидание посадки</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Прилёт</td>
-                        <td class="col2">DG 1011</td>
-                        <td class="col3">Люфтганза</td>
-                        <td class="col4"><img src="logos/lufthansa.jpg" /></td>
-                        <td class="col5">Airbus-A380</td>
-                        <td class="col6">Лиссабон</td>
-                        <td class="col7">11:22</td>
-                        <td class="col8">Летит</td>
-                        <td class="col9"></td>
+                        <td>Прилёт</td>
+                        <td>DG 1011</td>
+                        <td>Люфтганза</td>
+                        <td><img src="logos/lufthansa.jpg" /></td>
+                        <td>Airbus-A380</td>
+                        <td>Лиссабон</td>
+                        <td>11:22</td>
+                        <td>Летит</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">СР 1001</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Ил-76 МД-90</td>
-                        <td class="col6">Энгельс</td>
-                        <td class="col7">11:30</td>
-                        <td class="col8">Посадка закрыта</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>СР 1001</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Ил-76 МД-90</td>
+                        <td>Энгельс</td>
+                        <td>11:30</td>
+                        <td>Посадка закрыта</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">SB 2103</td>
-                        <td class="col3">Бритиш Эйрвэйс</td>
-                        <td class="col4"><img src="logos/british_airways.jpg" /></td>
-                        <td class="col5">Boeing-747</td>
-                        <td class="col6">Рим</td>
-                        <td class="col7">11:05</td>
-                        <td class="col8">Посадка окончена</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>SB 2103</td>
+                        <td>Бритиш Эйрвэйс</td>
+                        <td><img src="logos/british_airways.jpg" /></td>
+                        <td>Boeing-747</td>
+                        <td>Рим</td>
+                        <td>11:05</td>
+                        <td>Посадка окончена</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Прилёт</td>
-                        <td class="col2">СС 1122</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Бе-200</td>
-                        <td class="col6">Геленджик</td>
-                        <td class="col7">11:10</td>
-                        <td class="col8">Летит</td>
-                        <td class="col9"></td>
+                        <td>Прилёт</td>
+                        <td>СС 1122</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Бе-200</td>
+                        <td>Геленджик</td>
+                        <td>11:10</td>
+                        <td>Летит</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">PT 9954</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Ту-134</td>
-                        <td class="col6">Краснодар</td>
-                        <td class="col7">10:40</td>
-                        <td class="col8">Регистрация</td>
-                        <td class="col9">ABCD1234/XYZU6789</td>
+                        <td>Вылет</td>
+                        <td>PT 9954</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Ту-134</td>
+                        <td>Краснодар</td>
+                        <td>10:40</td>
+                        <td>Регистрация</td>
+                        <td>ABCD1234/XYZU6789</td>
                     </tr>
                     <tr>
-                        <td class="col1">Прилёт</td>
-                        <td class="col2">NG 1492</td>
-                        <td class="col3">Люфтганза</td>
-                        <td class="col4"><img src="logos/lufthansa.jpg" /></td>
-                        <td class="col5">Airbus-A321</td>
-                        <td class="col6">Франкфурт-на-Майне</td>
-                        <td class="col7">10:42</td>
-                        <td class="col8">Летит</td>
-                        <td class="col9"></td>
+                        <td>Прилёт</td>
+                        <td>NG 1492</td>
+                        <td>Люфтганза</td>
+                        <td><img src="logos/lufthansa.jpg" /></td>
+                        <td>Airbus-A321</td>
+                        <td>Франкфурт-на-Майне</td>
+                        <td>10:42</td>
+                        <td>Летит</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Прилёт</td>
-                        <td class="col2">GN 1490</td>
-                        <td class="col3">Бритиш Эйрвэйс</td>
-                        <td class="col4"><img src="logos/british_airways.jpg" /></td>
-                        <td class="col5">Airbus-A320</td>
-                        <td class="col6">Париж</td>
-                        <td class="col7">10:45</td>
-                        <td class="col8">Летит</td>
-                        <td class="col9"></td>
+                        <td>Прилёт</td>
+                        <td>GN 1490</td>
+                        <td>Бритиш Эйрвэйс</td>
+                        <td><img src="logos/british_airways.jpg" /></td>
+                        <td>Airbus-A320</td>
+                        <td>Париж</td>
+                        <td>10:45</td>
+                        <td>Летит</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Прилёт</td>
-                        <td class="col2">PP 3322</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Ту-144ДД</td>
-                        <td class="col6">Астана</td>
-                        <td class="col7">11:10</td>
-                        <td class="col8">Летит</td>
-                        <td class="col9"></td>
+                        <td>Прилёт</td>
+                        <td>PP 3322</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Ту-144ДД</td>
+                        <td>Астана</td>
+                        <td>11:10</td>
+                        <td>Летит</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">FT 1718</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Airbus-A321</td>
-                        <td class="col6">Родес</td>
-                        <td class="col7">11:15</td>
-                        <td class="col8">Посадка окончена</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>FT 1718</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Airbus-A321</td>
+                        <td>Родес</td>
+                        <td>11:15</td>
+                        <td>Посадка окончена</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td class="col1">Вылет</td>
-                        <td class="col2">EP 2020</td>
-                        <td class="col3">Аэрофлот</td>
-                        <td class="col4"><img src="logos/aeroflot.jpg" /></td>
-                        <td class="col5">Ту-154Д</td>
-                        <td class="col6">Санкт-Петербург</td>
-                        <td class="col7">11:20</td>
-                        <td class="col8">Ожидание посадки</td>
-                        <td class="col9"></td>
+                        <td>Вылет</td>
+                        <td>EP 2020</td>
+                        <td>Аэрофлот</td>
+                        <td><img src="logos/aeroflot.jpg" /></td>
+                        <td>Ту-154Д</td>
+                        <td>Санкт-Петербург</td>
+                        <td>11:20</td>
+                        <td>Ожидание посадки</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>    
