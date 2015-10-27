@@ -20,7 +20,6 @@
             display: inline-block;
             vertical-align: top;
         }
-
         .container {
             vertical-align: top;
             white-space: nowrap;
@@ -35,7 +34,6 @@
             display: inline-block;
             vertical-align: top;
         }
-
         .domodedovo {
             position: relative;
             top: 35px;
@@ -52,8 +50,7 @@
             color: white;
             line-height: 3em;
         }
-
-        table.airporttable {
+        table {
             position: relative;
             top: 15px;
             left: 15px;
@@ -66,8 +63,21 @@
             vertical-align: middle;
             padding: 2px 6px;
         }
-        caption label:first-child {
+		th {
+		   padding: 10px 6px;
+		}
+		label { 
+			font-family: Tahoma, sans-serif;
+		}
+        caption {
             font-weight: bold;
+			margin: 10px;
+        }
+		tbody tr:nth-of-type(odd) {
+            background-color: #E0E0E0;
+        }
+        tbody tr:nth-of-type(even) {
+            background-color: #F0F0F0;
         }
     </style>
 </head>
@@ -86,7 +96,9 @@
         <div class="left">
         </div><!--
      --><div class="main">
-            <table class="airporttable">
+			<input id="departures" type="checkbox" checked /><label>Вылеты </label>
+			<input id="arrivals" type="checkbox" checked /><label>Прилёты </label>
+            <table>
                 <colgroup>
                     <col class="col1" />
                     <col class="col2" />
@@ -99,9 +111,7 @@
                     <col class="col9" />
                 </colgroup>
                 <caption>
-                    <label>Табло аэропорта</label><br />
-                    <input id="departures" type="checkbox" checked /><label>Вылеты </label>
-                    <input id="arrivals" type="checkbox" checked /><label>Прилёты </label>
+                    Табло аэропорта
                 </caption>
                 <thead>
                     <tr>
@@ -115,8 +125,8 @@
                         <th>Статус рейса</th>
                         <th>Примечание</th>
                     </tr>
-                </thead>
-                <tbody>
+                </thead>				
+                <tbody>					
                     <tr>
                         <td>Вылет</td>
                         <td>АВ 1234</td>
