@@ -31,6 +31,9 @@
             background-color: #53c862;
         }
         .main {
+            position: relative;
+            top: 15px;
+            left: 15px;
             display: inline-block;
             vertical-align: top;
         }
@@ -50,10 +53,7 @@
             color: white;
             line-height: 3em;
         }
-        table {
-            position: relative;
-            top: 15px;
-            left: 15px;
+        table {            
             font-family: Tahoma, sans-serif;
             font-size: 1em;
         }
@@ -69,15 +69,22 @@
 		label { 
 			font-family: Tahoma, sans-serif;
 		}
-        caption {
+        h3 {
+            font-family: Tahoma, sans-serif;
             font-weight: bold;
-			margin: 10px;
+            margin: 10px;
         }
 		tbody tr:nth-of-type(odd) {
             background-color: #E0E0E0;
         }
         tbody tr:nth-of-type(even) {
             background-color: #F0F0F0;
+        }
+        #departures:checked ~ table tr.departure, #arrivals:checked ~ table tr.arrival {
+            visibility: visible;
+        }
+        #departures:not(:checked) ~ table tr.departure, #arrivals:not(:checked) ~ table tr.arrival {
+            visibility: collapse;
         }
     </style>
 </head>
@@ -96,23 +103,21 @@
         <div class="left">
         </div><!--
      --><div class="main">
+            <h3>Расписание аэропорта</h3>
 			<input id="departures" type="checkbox" checked /><label>Вылеты </label>
 			<input id="arrivals" type="checkbox" checked /><label>Прилёты </label>
             <table>
                 <colgroup>
-                    <col class="col1" />
-                    <col class="col2" />
-                    <col class="col3" />
-                    <col class="col4" />
-                    <col class="col5" />
-                    <col class="col6" />
-                    <col class="col7" />
-                    <col class="col8" />
-                    <col class="col9" />
+                    <col class="col1"/>
+                    <col class="col2"/>
+                    <col class="col3"/>
+                    <col class="col4"/>
+                    <col class="col5"/>
+                    <col class="col6"/>
+                    <col class="col7"/>
+                    <col class="col8"/>
+                    <col class="col9"/>
                 </colgroup>
-                <caption>
-                    Табло аэропорта
-                </caption>
                 <thead>
                     <tr>
                         <th>Тип рейса</th>
@@ -127,7 +132,7 @@
                     </tr>
                 </thead>				
                 <tbody>					
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>АВ 1234</td>
                         <td>Аэрофлот</td>
@@ -138,7 +143,7 @@
                         <td>Регистрация</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>SN 8843</td>
                         <td>Люфтганза</td>
@@ -149,7 +154,7 @@
                         <td>Регистрация</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>GI 1944</td>
                         <td>Бритиш Эйрвэйс</td>
@@ -160,7 +165,7 @@
                         <td>Регистрация</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>PT 9954</td>
                         <td>Аэрофлот</td>
@@ -171,7 +176,7 @@
                         <td>Регистрация</td>
                         <td>ABCD1234/XYZU6789</td>
                     </tr>
-                    <tr>
+                    <tr class="arrival">
                         <td>Прилёт</td>
                         <td>NG 1492</td>
                         <td>Люфтганза</td>
@@ -182,7 +187,7 @@
                         <td>Летит</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="arrival">
                         <td>Прилёт</td>
                         <td>GN 1490</td>
                         <td>Люфтганза</td>
@@ -193,7 +198,7 @@
                         <td>Летит</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>KC 0123</td>
                         <td>Аэрофлот</td>
@@ -204,7 +209,7 @@
                         <td>Ожидание посадки</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>RT 4471</td>
                         <td>Аэрофлот</td>
@@ -215,7 +220,7 @@
                         <td>Посадка окончена</td>
                         <td>EFGH5678/OPQR9012</td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>SB 2103</td>
                         <td>Бритиш Эйрвэйс</td>
@@ -226,7 +231,7 @@
                         <td>Посадка окончена</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="arrival">
                         <td>Прилёт</td>
                         <td>СС 1122</td>
                         <td>Аэрофлот</td>
@@ -237,7 +242,7 @@
                         <td>Летит</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>FT 1718</td>
                         <td>Аэрофлот</td>
@@ -248,7 +253,7 @@
                         <td>Посадка окончена</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>EP 2020</td>
                         <td>Аэрофлот</td>
@@ -259,7 +264,7 @@
                         <td>Ожидание посадки</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="arrival">
                         <td>Прилёт</td>
                         <td>DG 1011</td>
                         <td>Люфтганза</td>
@@ -270,7 +275,7 @@
                         <td>Летит</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>СР 1001</td>
                         <td>Аэрофлот</td>
@@ -281,7 +286,7 @@
                         <td>Посадка закрыта</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>SB 2103</td>
                         <td>Бритиш Эйрвэйс</td>
@@ -292,7 +297,7 @@
                         <td>Посадка окончена</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="arrival">
                         <td>Прилёт</td>
                         <td>СС 1122</td>
                         <td>Аэрофлот</td>
@@ -303,7 +308,7 @@
                         <td>Летит</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>PT 9954</td>
                         <td>Аэрофлот</td>
@@ -314,7 +319,7 @@
                         <td>Регистрация</td>
                         <td>ABCD1234/XYZU6789</td>
                     </tr>
-                    <tr>
+                    <tr class="arrival">
                         <td>Прилёт</td>
                         <td>NG 1492</td>
                         <td>Люфтганза</td>
@@ -325,7 +330,7 @@
                         <td>Летит</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="arrival">
                         <td>Прилёт</td>
                         <td>GN 1490</td>
                         <td>Бритиш Эйрвэйс</td>
@@ -336,7 +341,7 @@
                         <td>Летит</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="arrival">
                         <td>Прилёт</td>
                         <td>PP 3322</td>
                         <td>Аэрофлот</td>
@@ -347,7 +352,7 @@
                         <td>Летит</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>FT 1718</td>
                         <td>Аэрофлот</td>
@@ -358,7 +363,7 @@
                         <td>Посадка окончена</td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="departure">
                         <td>Вылет</td>
                         <td>EP 2020</td>
                         <td>Аэрофлот</td>
