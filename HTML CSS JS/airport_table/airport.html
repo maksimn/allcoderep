@@ -53,9 +53,10 @@
             color: white;
             line-height: 3em;
         }
-        table {            
+        table {
             font-family: Tahoma, sans-serif;
             font-size: 1em;
+            overflow: hidden;
         }
         td, th {
             border: 1px solid black;
@@ -74,17 +75,23 @@
             font-weight: bold;
             margin: 10px;
         }
-		tbody tr:nth-of-type(odd) {
+		tr:nth-of-type(odd) {
             background-color: #E0E0E0;
         }
-        tbody tr:nth-of-type(even) {
+        tr:nth-of-type(even) {
             background-color: #F0F0F0;
+        }
+        tr.htr {
+            background-color: white;
         }
         #departures:checked ~ table tr.departure, #arrivals:checked ~ table tr.arrival {
             visibility: visible;
         }
         #departures:not(:checked) ~ table tr.departure, #arrivals:not(:checked) ~ table tr.arrival {
             visibility: collapse;
+        }
+        tr:hover {
+            background-color: yellow;
         }
     </style>
 </head>
@@ -107,28 +114,17 @@
 			<input id="departures" type="checkbox" checked /><label>Вылеты </label>
 			<input id="arrivals" type="checkbox" checked /><label>Прилёты </label>
             <table>
-                <colgroup>
-                    <col class="col1"/>
-                    <col class="col2"/>
-                    <col class="col3"/>
-                    <col class="col4"/>
-                    <col class="col5"/>
-                    <col class="col6"/>
-                    <col class="col7"/>
-                    <col class="col8"/>
-                    <col class="col9"/>
-                </colgroup>
                 <thead>
-                    <tr>
-                        <th>Тип рейса</th>
-                        <th>№ рейса</th>
-                        <th>Авиакомпания</th>
-                        <th>Лого</th>
-                        <th>Тип возд. судна</th>
-                        <th>Аэропорт назначения</th>
-                        <th>Плановое время</th>
-                        <th>Статус рейса</th>
-                        <th>Примечание</th>
+                    <tr class="htr">
+                        <th class="col">Тип рейса</th>
+                        <th class="col">№ рейса</th>
+                        <th class="col">Авиакомпания</th>
+                        <th class="col">Лого</th>
+                        <th class="col">Тип возд. судна</th>
+                        <th class="col">Аэропорт назначения</th>
+                        <th class="col">Плановое время</th>
+                        <th class="col">Статус рейса</th>
+                        <th class="col">Примечание</th>
                     </tr>
                 </thead>				
                 <tbody>					
