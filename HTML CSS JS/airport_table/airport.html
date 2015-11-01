@@ -63,6 +63,7 @@
             text-align: center;
             vertical-align: middle;
             padding: 2px 6px;
+            position: relative;
         }
 		th {
 		   padding: 10px 6px;
@@ -80,7 +81,7 @@
         }
         tr:nth-of-type(even) {
             background-color: #F0F0F0;
-        }
+        }        
         tr.htr {
             background-color: white;
         }
@@ -90,8 +91,18 @@
         #departures:not(:checked) ~ table tr.departure, #arrivals:not(:checked) ~ table tr.arrival {
             visibility: collapse;
         }
-        tr:hover {
+        #tbody tr:hover {
             background-color: yellow;
+        }
+        #tbody td:hover::after {
+            content: "";
+            position: absolute;
+            background-color: yellow;
+            left: 0;
+            top: -5000px;
+            height: 10000px;
+            width: 100%;
+            z-index: -1;
         }
     </style>
 </head>
@@ -127,7 +138,7 @@
                         <th class="col">Примечание</th>
                     </tr>
                 </thead>				
-                <tbody>					
+                <tbody id="tbody">					
                     <tr class="departure">
                         <td>Вылет</td>
                         <td>АВ 1234</td>

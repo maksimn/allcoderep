@@ -1,0 +1,140 @@
+﻿<!doctype html>
+<html>
+<head lang="ru">
+    <meta charset="utf-8" />
+    <title>Табло аэропорта</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <style>
+        .main {
+            position: relative;
+            top: 15px;
+            left: 15px;
+        }
+        table {
+            font-family: Tahoma, sans-serif;
+            font-size: 1em;
+            overflow: hidden;
+            table-layout: fixed;
+        }
+        td, th {
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+        }
+		label { 
+			font-family: Tahoma, sans-serif;
+		}
+        h3 {
+            font-family: Tahoma, sans-serif;
+            font-weight: bold;
+            margin: 10px;
+        }
+        #departures:checked ~ table tr.departure, #arrivals:checked ~ table tr.arrival {
+            visibility: visible;
+        }
+        #departures:not(:checked) ~ table tr.departure, #arrivals:not(:checked) ~ table tr.arrival {
+            visibility: collapse;
+        }
+        tr.htr {
+            background-color: white;
+        }
+        tbody tr:hover {
+            background-color: yellow;
+        }
+        td:hover::after {
+            content: "";
+            position: absolute;
+            background-color: yellow;
+            left: 0;
+            top: -5000px;
+            height: 10000px;
+            width: 100%;
+            z-index: -1;
+        }
+        table.backing td {
+            height: 20px;
+            width: 700px;
+        }
+        .backing tr:nth-of-type(odd) {
+            background-color: #E0E0E0;
+        }
+        .backing tr:nth-of-type(even) {
+            background-color: #F0F0F0;
+        }
+        .col1, .col2, .col7 {
+            width: 90px;
+            max-width: 90px;
+            overflow: hidden;
+        }
+        .col3 {
+            width: 110px;
+            max-width: 110px;
+            overflow: hidden;
+        }
+        .col5, .col8 {
+            width: 100px; 
+            max-width: 100px;
+            overflow: hidden;
+        }
+        .col6, .col9 {
+            width: 90px;
+            max-width: 90px;
+            overflow: hidden;
+        }
+        .col4 {
+            width: 70px;
+            max-width: 70px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h3>Расписание аэропорта</h3>
+        <input id="departures" type="checkbox" checked /><label>Вылеты </label>
+        <input id="arrivals" type="checkbox" checked /><label>Прилёты </label>
+        <table>
+            <colgroup>
+            </colgroup>
+            <thead>
+                <tr class="htr">
+                    <th class="col1">Тип рейса</th>
+                    <th class="col2">№ рейса</th>
+                    <th class="col3">Авиакомпания</th>
+                    <th class="col4">Лого</th>
+                    <th class="col5">Тип возд. судна</th>
+                    <th class="col6">Аэропорт назначения</th>
+                    <th class="col7">Плановое время</th>
+                    <th class="col8">Статус рейса</th>
+                    <th class="col9">Примечание</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr class="departure">
+                    <td>Вылет</td>
+                    <td>АВ 1234</td>
+                    <td>Аэрофлот</td>
+                    <td><img src="logos/aeroflot.jpg" /></td>
+                    <td>Ту-204-100В</td>
+                    <td>Нижний Новгород</td>
+                    <td>10:30</td>
+                    <td>Регистрация</td>
+                    <td>QWER/ASDF</td>
+                </tr>
+                <tr class="arrival">
+                    <td>Прилёт</td>
+                    <td>NG 1492</td>
+                    <td>Люфтганза</td>
+                    <td><img src="logos/lufthansa.jpg" /></td>
+                    <td>Airbus-A321</td>
+                    <td>Франкфурт-на-Майне</td>
+                    <td>10:42</td>
+                    <td>Летит</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
