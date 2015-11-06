@@ -5,6 +5,9 @@
     <title>Табло аэропорта</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <style>
+        body {
+            font-family: Tahoma, sans-serif;
+        }
         .header {
             height: 200px;
             background-color: #53c862;
@@ -43,46 +46,35 @@
             left: 40px;
         }
         .domodedovo h1 {
-            font-family: Tahoma, sans-serif;
             font-size: 5em;
             color: white;
         }
         .domodedovo p {
-            font-family: Tahoma, sans-serif;
-            font-size: 1em;
             color: white;
             line-height: 3em;
         }
         table {
-            font-family: Tahoma, sans-serif;
-            font-size: 1em;
             overflow: hidden;
         }
         td, th {
             border: 1px solid black;
             text-align: center;
             vertical-align: middle;
-            padding: 2px 6px;
             position: relative;
+            height: 44px;
         }
-		th {
-		   padding: 10px 6px;
-		}
-		label { 
-			font-family: Tahoma, sans-serif;
-		}
         h3 {
-            font-family: Tahoma, sans-serif;
             font-weight: bold;
             margin: 10px;
         }
+        /*
 		tr:nth-of-type(odd) {
             background-color: #E0E0E0;
         }
         tr:nth-of-type(even) {
             background-color: #F0F0F0;
-        }        
-        tr.htr {
+        }*/       
+        thead tr {
             background-color: white;
         }
         #departures:checked ~ table tr.departure, #arrivals:checked ~ table tr.arrival {
@@ -91,10 +83,10 @@
         #departures:not(:checked) ~ table tr.departure, #arrivals:not(:checked) ~ table tr.arrival {
             visibility: collapse;
         }
-        #tbody tr:hover {
+        tbody tr:hover {
             background-color: yellow;
         }
-        #tbody td:hover::after {
+        tbody td:hover::after {
             content: "";
             position: absolute;
             background-color: yellow;
@@ -103,6 +95,23 @@
             height: 10000px;
             width: 100%;
             z-index: -1;
+        }
+
+        .flighttype {
+            width: 100px;
+            max-width: 100px;
+        }
+        .flightnum {
+            width: 100px;
+            max-width: 100px;
+        }
+        .companyname {
+            width: 140px;
+            max-width: 140px;
+        }
+        .companylogo {
+            width: 70px;
+            max-width: 70px;
         }
     </style>
 </head>
@@ -126,19 +135,19 @@
 			<input id="arrivals" type="checkbox" checked /><label>Прилёты </label>
             <table>
                 <thead>
-                    <tr class="htr">
-                        <th class="col">Тип рейса</th>
-                        <th class="col">№ рейса</th>
-                        <th class="col">Авиакомпания</th>
-                        <th class="col">Лого</th>
-                        <th class="col">Тип возд. судна</th>
-                        <th class="col">Аэропорт назначения</th>
-                        <th class="col">Плановое время</th>
-                        <th class="col">Статус рейса</th>
-                        <th class="col">Примечание</th>
+                    <tr>
+                        <th class="flighttype">Тип рейса</th>
+                        <th class="flightnum">№ рейса</th>
+                        <th class="companyname">Авиакомпания</th>
+                        <th class="companylogo">Лого</th>
+                        <th>Тип возд. судна</th>
+                        <th>Аэропорт назначения</th>
+                        <th>Плановое время</th>
+                        <th>Статус рейса</th>
+                        <th>Примечание</th>
                     </tr>
                 </thead>				
-                <tbody id="tbody">					
+                <tbody>					
                     <tr class="departure">
                         <td>Вылет</td>
                         <td>АВ 1234</td>
