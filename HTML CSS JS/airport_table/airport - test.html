@@ -5,7 +5,9 @@
     <title>Табло аэропорта</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <style>
-        body { font-family: Tahoma, sans-serif; }
+        body {
+            font-family: Tahoma, sans-serif;
+        }
         .main {
             position: relative;
             top: 15px;
@@ -15,30 +17,34 @@
             font-weight: bold;
             margin: 10px;
         }
-        .table { 
-            display: table; 
+        .table {
+            display: table;
             border-collapse: collapse;
             table-layout: fixed;
             overflow: hidden;
         }
-        .row { display: table-row; }
-        .cell { 
-            display: table-cell; 
+        .row {
+            display: table-row;
+        }
+        .cell {
+            display: table-cell;
             border: 1px solid black;
             text-align: center;
             vertical-align: middle;
             position: relative;
         }
-        .thead { display: table-header-group; }
-        .tbody { display: table-row-group; }
-
+        .thead {
+            display: table-header-group;
+        }
+        .tbody {
+            display: table-row-group;
+        }
         #departures:checked ~ .table .departure, #arrivals:checked ~ .table .arrival {
             visibility: visible;
         }
         #departures:not(:checked) ~ .table .departure, #arrivals:not(:checked) ~ .table .arrival {
             visibility: collapse;
         }
-
         .flighttype {
             width: 100px;
             max-width: 100px;
@@ -78,11 +84,9 @@
         .cell {
             height: 44px;
         }
-
         .tbody .row:hover {
             background-color: yellow;
         }
-        
         .tbody .cell:hover::after {
             content: "";
             position: absolute;
@@ -93,22 +97,69 @@
             width: 100%;
             z-index: -1;
         }
-
         .thead .row {
             background-color: white;
         }
         .backing {
-            position: absolute;            
+            position: absolute;
             z-index: -2;
             top: 0px;
             height: 44px;
-            width: 2000px;
+            width: 200px;
         }
         .row:nth-of-type(odd) .backing {
             background-color: #E0E0E0;
         }
         .row:nth-of-type(even) .backing {
             background-color: #F0F0F0;
+        }
+        @media (max-width: 485px) {
+            .flighttype, .companyname, .companylogo, .planetype, .status, .note {
+                width: 0;
+                max-width: 0;
+                overflow: hidden;
+                border: none;
+            }
+        }
+        @media (min-width: 486px) and (max-width: 615px) {
+            .companyname, .companylogo, .planetype, .status, .note {
+                width: 0;
+                max-width: 0;
+                overflow: hidden;
+                border: none;
+            }
+        }
+        @media (min-width: 616px) and (max-width: 685px) {
+            .companylogo, .planetype, .status, .note {
+                width: 0;
+                max-width: 0;
+                overflow: hidden;
+                border: none;
+            }
+        }
+        @media (min-width: 686px) and (max-width: 815px) {
+            .planetype, .status, .note {
+                width: 0;
+                max-width: 0;
+                overflow: hidden;
+                border: none;
+            }
+        }
+        @media (min-width: 816px) and (max-width: 925px) {
+            .status, .note {
+                width: 0;
+                max-width: 0;
+                overflow: hidden;
+                border: none;
+            }
+        }
+        @media (min-width: 926px) and (max-width: 1035px) {
+            .note {
+                width: 0;
+                max-width: 0;
+                overflow: hidden;
+                border: none;
+            }
         }
     </style>
 </head>
@@ -134,58 +185,58 @@
             <div class="tbody">
                 <div class="row departure">
                     <div class="cell flighttype"><div class="backing"></div>Вылет</div>
-                    <div class="cell flightnum">AB 1234</div>
-                    <div class="cell companyname">Аэрофлот</div>
-                    <div class="cell companylogo"><img src="logos/aeroflot.jpg" /></div>
-                    <div class="cell planetype">Ту-204-100В</div>  
-                    <div class="cell destination">Нижний Новгород</div>
-                    <div class="cell plannedtime">10:30</div>
-                    <div class="cell status">Регистрация</div>
-                    <div class="cell note">ABCD/1234</div>
+                    <div class="cell flightnum"><div class="backing"></div>AB 1234</div>
+                    <div class="cell companyname"><div class="backing"></div>Аэрофлот</div>
+                    <div class="cell companylogo"><div class="backing"></div><img src="logos/aeroflot.jpg" /></div>
+                    <div class="cell planetype"><div class="backing"></div>Ту-204-100В</div>  
+                    <div class="cell destination"><div class="backing"></div>Нижний Новгород</div>
+                    <div class="cell plannedtime"><div class="backing"></div>10:30</div>
+                    <div class="cell status"><div class="backing"></div>Регистрация</div>
+                    <div class="cell note"><div class="backing"></div>ABCD/1234</div>
                 </div>
                 <div class="row arrival">
                     <div class="cell flighttype"><div class="backing"></div>Прилет</div>
-                    <div class="cell flightnum">NG 1492</div>
-                    <div class="cell companyname">Люфтганза</div>
-                    <div class="cell companylogo"><img src="logos/lufthansa.jpg" /></div>
-                    <div class="cell planetype">Airbus-A321</div>
-                    <div class="cell destination">Франкфурт-на-Майне</div>
-                    <div class="cell plannedtime">10:42</div>
-                    <div class="cell status">Летит</div>
-                    <div class="cell note">PQRS/0987</div>
+                    <div class="cell flightnum"><div class="backing"></div>NG 1492</div>
+                    <div class="cell companyname"><div class="backing"></div>Люфтганза</div>
+                    <div class="cell companylogo"><div class="backing"></div><img src="logos/lufthansa.jpg" /></div>
+                    <div class="cell planetype"><div class="backing"></div>Airbus-A321</div>
+                    <div class="cell destination"><div class="backing"></div>Франкфурт-на-Майне</div>
+                    <div class="cell plannedtime"><div class="backing"></div>10:42</div>
+                    <div class="cell status"><div class="backing"></div>Летит</div>
+                    <div class="cell note"><div class="backing"></div>PQRS/0987</div>
                 </div>
                 <div class="row departure">
                     <div class="cell flighttype"><div class="backing"></div>Вылет</div>
-                    <div class="cell flightnum">SN 8843</div>
-                    <div class="cell companyname">Люфтганза</div>
-                    <div class="cell companylogo"><img src="logos/lufthansa.jpg" /></div>
-                    <div class="cell planetype">Airbus-A380</div>
-                    <div class="cell destination">Берлин</div>
-                    <div class="cell plannedtime">10:33</div>
-                    <div class="cell status">Регистрация</div>
-                    <div class="cell note"></div>
+                    <div class="cell flightnum"><div class="backing"></div>SN 8843</div>
+                    <div class="cell companyname"><div class="backing"></div>Люфтганза</div>
+                    <div class="cell companylogo"><div class="backing"></div><img src="logos/lufthansa.jpg" /></div>
+                    <div class="cell planetype"><div class="backing"></div>Airbus-A380</div>
+                    <div class="cell destination"><div class="backing"></div>Берлин</div>
+                    <div class="cell plannedtime"><div class="backing"></div>10:33</div>
+                    <div class="cell status"><div class="backing"></div>Регистрация</div>
+                    <div class="cell note"><div class="backing"></div></div>
                 </div>
                 <div class="row departure">
                     <div class="cell flighttype"><div class="backing"></div>Вылет</div>
-                    <div class="cell flightnum">GI 1944</div>
-                    <div class="cell companyname">Бритиш Эйрвэйс</div>
-                    <div class="cell companylogo"><img src="logos/british_airways.jpg" /></div>
-                    <div class="cell planetype">Boeing-777</div>
-                    <div class="cell destination">Мадрид</div>
-                    <div class="cell plannedtime">10:37</div>
-                    <div class="cell status">Регистрация</div>
-                    <div class="cell note"></div>
+                    <div class="cell flightnum"><div class="backing"></div>GI 1944</div>
+                    <div class="cell companyname"><div class="backing"></div>Бритиш Эйрвэйс</div>
+                    <div class="cell companylogo"><div class="backing"></div><img src="logos/british_airways.jpg" /></div>
+                    <div class="cell planetype"><div class="backing"></div>Boeing-777</div>
+                    <div class="cell destination"><div class="backing"></div>Мадрид</div>
+                    <div class="cell plannedtime"><div class="backing"></div>10:37</div>
+                    <div class="cell status"><div class="backing"></div>Регистрация</div>
+                    <div class="cell note"><div class="backing"></div></div>
                 </div>
                 <div class="row departure">
                     <div class="cell flighttype"><div class="backing"></div>Вылет</div>
-                    <div class="cell flightnum">PT 9954</div>
-                    <div class="cell companyname">Аэрофлот</div>
-                    <div class="cell companylogo"><img src="logos/aeroflot.jpg" /></div>
-                    <div class="cell planetype">Ту-134</div>
-                    <div class="cell destination">Краснодар</div>
-                    <div class="cell plannedtime">10:40</div>
-                    <div class="cell status">Регистрация</div>
-                    <div class="cell note">ABCD1234/XYZU6789</div>
+                    <div class="cell flightnum"><div class="backing"></div>PT 9954</div>
+                    <div class="cell companyname"><div class="backing"></div>Аэрофлот</div>
+                    <div class="cell companylogo"><div class="backing"></div><img src="logos/aeroflot.jpg" /></div>
+                    <div class="cell planetype"><div class="backing"></div>Ту-134</div>
+                    <div class="cell destination"><div class="backing"></div>Краснодар</div>
+                    <div class="cell plannedtime"><div class="backing"></div>10:40</div>
+                    <div class="cell status"><div class="backing"></div>Регистрация</div>
+                    <div class="cell note"><div class="backing"></div>ABCD1234/XYZU6789</div>
                 </div>
             </div>
         </div>
