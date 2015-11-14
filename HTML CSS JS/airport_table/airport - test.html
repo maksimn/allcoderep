@@ -45,31 +45,31 @@
         #departures:not(:checked) ~ .table .departure, #arrivals:not(:checked) ~ .table .arrival {
             visibility: collapse;
         }
-        .flighttype {
+        .ftype {
             width: 100px;
             max-width: 100px;
         }
-        .flightnum {
+        .fnum {
             width: 100px;
             max-width: 100px;
         }
-        .companyname {
+        .cname {
             width: 130px;
             max-width: 130px;
         }
-        .companylogo {
+        .clogo {
             width: 70px;
             max-width: 70px;
         }
-        .planetype {
+        .ptype {
             width: 130px;
             max-width: 130px;
         }
-        .destination {
+        .dst {
             width: 180px;
             max-width: 180px;
         }
-        .plannedtime {
+        .ptime {
             width: 90px;
             max-width: 90px;
         }
@@ -100,21 +100,21 @@
         .thead .row {
             background-color: white;
         }
-        .backing {
+        .bgr {
             position: absolute;
             z-index: -2;
             top: 0px;
             height: 44px;
             width: 200px;
         }
-        .row:nth-of-type(odd) .backing {
+        .row:nth-of-type(odd) .bgr {
             background-color: #E0E0E0;
         }
-        .row:nth-of-type(even) .backing {
+        .row:nth-of-type(even) .bgr {
             background-color: #F0F0F0;
         }
         @media (max-width: 485px) {
-            .flighttype, .companyname, .companylogo, .planetype, .status, .note {
+            .ftype, .cname, .clogo, .ptype, .status, .note {
                 width: 0;
                 max-width: 0;
                 overflow: hidden;
@@ -122,7 +122,7 @@
             }
         }
         @media (min-width: 486px) and (max-width: 615px) {
-            .companyname, .companylogo, .planetype, .status, .note {
+            .cname, .clogo, .ptype, .status, .note {
                 width: 0;
                 max-width: 0;
                 overflow: hidden;
@@ -130,7 +130,7 @@
             }
         }
         @media (min-width: 616px) and (max-width: 685px) {
-            .companylogo, .planetype, .status, .note {
+            .clogo, .ptype, .status, .note {
                 width: 0;
                 max-width: 0;
                 overflow: hidden;
@@ -138,7 +138,7 @@
             }
         }
         @media (min-width: 686px) and (max-width: 815px) {
-            .planetype, .status, .note {
+            .ptype, .status, .note {
                 width: 0;
                 max-width: 0;
                 overflow: hidden;
@@ -171,72 +171,72 @@
         <div class="table">
             <div class="thead">
                 <div class="row">
-                    <div class="cell flighttype">Тип рейса</div>
-                    <div class="cell flightnum">№ рейса</div>
-                    <div class="cell companyname">Авиакомпания</div>
-                    <div class="cell companylogo">Лого</div>
-                    <div class="cell planetype">Тип возд. судна</div>
-                    <div class="cell destination">Аэропорт назначения</div>
-                    <div class="cell plannedtime">Плановое время</div>
+                    <div class="cell ftype">Тип рейса</div>
+                    <div class="cell fnum">№ рейса</div>
+                    <div class="cell cname">Авиакомпания</div>
+                    <div class="cell clogo">Лого</div>
+                    <div class="cell ptype">Тип возд. судна</div>
+                    <div class="cell dst">Аэропорт назначения</div>
+                    <div class="cell ptime">Плановое время</div>
                     <div class="cell status">Статус рейса</div>
                     <div class="cell note">Примечание</div>
                 </div>
             </div>
             <div class="tbody">
                 <div class="row departure">
-                    <div class="cell flighttype"><div class="backing"></div>Вылет</div>
-                    <div class="cell flightnum"><div class="backing"></div>AB 1234</div>
-                    <div class="cell companyname"><div class="backing"></div>Аэрофлот</div>
-                    <div class="cell companylogo"><div class="backing"></div><img src="logos/aeroflot.jpg" /></div>
-                    <div class="cell planetype"><div class="backing"></div>Ту-204-100В</div>  
-                    <div class="cell destination"><div class="backing"></div>Нижний Новгород</div>
-                    <div class="cell plannedtime"><div class="backing"></div>10:30</div>
-                    <div class="cell status"><div class="backing"></div>Регистрация</div>
-                    <div class="cell note"><div class="backing"></div>ABCD/1234</div>
+                    <div class="cell ftype"><div class="bgr"></div>Вылет</div>
+                    <div class="cell fnum"><div class="bgr"></div>AB 1234</div>
+                    <div class="cell cname"><div class="bgr"></div>Аэрофлот</div>
+                    <div class="cell clogo"><div class="bgr"></div><img src="logos/aeroflot.jpg" /></div>
+                    <div class="cell ptype"><div class="bgr"></div>Ту-204-100В</div>  
+                    <div class="cell dst"><div class="bgr"></div>Нижний Новгород</div>
+                    <div class="cell ptime"><div class="bgr"></div>10:30</div>
+                    <div class="cell status"><div class="bgr"></div>Регистрация</div>
+                    <div class="cell note"><div class="bgr"></div>ABCD/1234</div>
                 </div>
                 <div class="row arrival">
-                    <div class="cell flighttype"><div class="backing"></div>Прилет</div>
-                    <div class="cell flightnum"><div class="backing"></div>NG 1492</div>
-                    <div class="cell companyname"><div class="backing"></div>Люфтганза</div>
-                    <div class="cell companylogo"><div class="backing"></div><img src="logos/lufthansa.jpg" /></div>
-                    <div class="cell planetype"><div class="backing"></div>Airbus-A321</div>
-                    <div class="cell destination"><div class="backing"></div>Франкфурт-на-Майне</div>
-                    <div class="cell plannedtime"><div class="backing"></div>10:42</div>
-                    <div class="cell status"><div class="backing"></div>Летит</div>
-                    <div class="cell note"><div class="backing"></div>PQRS/0987</div>
+                    <div class="cell ftype"><div class="bgr"></div>Прилет</div>
+                    <div class="cell fnum"><div class="bgr"></div>NG 1492</div>
+                    <div class="cell cname"><div class="bgr"></div>Люфтганза</div>
+                    <div class="cell clogo"><div class="bgr"></div><img src="logos/lufthansa.jpg" /></div>
+                    <div class="cell ptype"><div class="bgr"></div>Airbus-A321</div>
+                    <div class="cell dst"><div class="bgr"></div>Франкфурт-на-Майне</div>
+                    <div class="cell ptime"><div class="bgr"></div>10:42</div>
+                    <div class="cell status"><div class="bgr"></div>Летит</div>
+                    <div class="cell note"><div class="bgr"></div>PQRS/0987</div>
                 </div>
                 <div class="row departure">
-                    <div class="cell flighttype"><div class="backing"></div>Вылет</div>
-                    <div class="cell flightnum"><div class="backing"></div>SN 8843</div>
-                    <div class="cell companyname"><div class="backing"></div>Люфтганза</div>
-                    <div class="cell companylogo"><div class="backing"></div><img src="logos/lufthansa.jpg" /></div>
-                    <div class="cell planetype"><div class="backing"></div>Airbus-A380</div>
-                    <div class="cell destination"><div class="backing"></div>Берлин</div>
-                    <div class="cell plannedtime"><div class="backing"></div>10:33</div>
-                    <div class="cell status"><div class="backing"></div>Регистрация</div>
-                    <div class="cell note"><div class="backing"></div></div>
+                    <div class="cell ftype"><div class="bgr"></div>Вылет</div>
+                    <div class="cell fnum"><div class="bgr"></div>SN 8843</div>
+                    <div class="cell cname"><div class="bgr"></div>Люфтганза</div>
+                    <div class="cell clogo"><div class="bgr"></div><img src="logos/lufthansa.jpg" /></div>
+                    <div class="cell ptype"><div class="bgr"></div>Airbus-A380</div>
+                    <div class="cell dst"><div class="bgr"></div>Берлин</div>
+                    <div class="cell ptime"><div class="bgr"></div>10:33</div>
+                    <div class="cell status"><div class="bgr"></div>Регистрация</div>
+                    <div class="cell note"><div class="bgr"></div></div>
                 </div>
                 <div class="row departure">
-                    <div class="cell flighttype"><div class="backing"></div>Вылет</div>
-                    <div class="cell flightnum"><div class="backing"></div>GI 1944</div>
-                    <div class="cell companyname"><div class="backing"></div>Бритиш Эйрвэйс</div>
-                    <div class="cell companylogo"><div class="backing"></div><img src="logos/british_airways.jpg" /></div>
-                    <div class="cell planetype"><div class="backing"></div>Boeing-777</div>
-                    <div class="cell destination"><div class="backing"></div>Мадрид</div>
-                    <div class="cell plannedtime"><div class="backing"></div>10:37</div>
-                    <div class="cell status"><div class="backing"></div>Регистрация</div>
-                    <div class="cell note"><div class="backing"></div></div>
+                    <div class="cell ftype"><div class="bgr"></div>Вылет</div>
+                    <div class="cell fnum"><div class="bgr"></div>GI 1944</div>
+                    <div class="cell cname"><div class="bgr"></div>Бритиш Эйрвэйс</div>
+                    <div class="cell clogo"><div class="bgr"></div><img src="logos/british_airways.jpg" /></div>
+                    <div class="cell ptype"><div class="bgr"></div>Boeing-777</div>
+                    <div class="cell dst"><div class="bgr"></div>Мадрид</div>
+                    <div class="cell ptime"><div class="bgr"></div>10:37</div>
+                    <div class="cell status"><div class="bgr"></div>Регистрация</div>
+                    <div class="cell note"><div class="bgr"></div></div>
                 </div>
                 <div class="row departure">
-                    <div class="cell flighttype"><div class="backing"></div>Вылет</div>
-                    <div class="cell flightnum"><div class="backing"></div>PT 9954</div>
-                    <div class="cell companyname"><div class="backing"></div>Аэрофлот</div>
-                    <div class="cell companylogo"><div class="backing"></div><img src="logos/aeroflot.jpg" /></div>
-                    <div class="cell planetype"><div class="backing"></div>Ту-134</div>
-                    <div class="cell destination"><div class="backing"></div>Краснодар</div>
-                    <div class="cell plannedtime"><div class="backing"></div>10:40</div>
-                    <div class="cell status"><div class="backing"></div>Регистрация</div>
-                    <div class="cell note"><div class="backing"></div>ABCD1234/XYZU6789</div>
+                    <div class="cell ftype"><div class="bgr"></div>Вылет</div>
+                    <div class="cell fnum"><div class="bgr"></div>PT 9954</div>
+                    <div class="cell cname"><div class="bgr"></div>Аэрофлот</div>
+                    <div class="cell clogo"><div class="bgr"></div><img src="logos/aeroflot.jpg" /></div>
+                    <div class="cell ptype"><div class="bgr"></div>Ту-134</div>
+                    <div class="cell dst"><div class="bgr"></div>Краснодар</div>
+                    <div class="cell ptime"><div class="bgr"></div>10:40</div>
+                    <div class="cell status"><div class="bgr"></div>Регистрация</div>
+                    <div class="cell note"><div class="bgr"></div>ABCD1234/XYZU6789</div>
                 </div>
             </div>
         </div>
