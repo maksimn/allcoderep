@@ -1,0 +1,4 @@
+knnsample/
+__pycache__/
+*.pyc
+*.pyo
