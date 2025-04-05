@@ -1,4 +1,5 @@
-knnsample/
+01-knn/knnsample/
 __pycache__/
 *.pyc
 *.pyo
+.venv
