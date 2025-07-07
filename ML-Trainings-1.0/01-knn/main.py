@@ -90,3 +90,21 @@ y_test_pred = classifier.predict_labels(dists, k=5)
 num_correct = np.sum(y_test_pred == y_test)
 accuracy = float(num_correct) / num_test
 print('Got %d / %d correct => accuracy: %f' % (num_correct, num_test, accuracy))
+
+# Now lets speed up distance matrix computation by using partial vectorization
+# with one loop. Implement the function compute_distances_one_loop and run the
+# code below:
+dists_one = classifier.compute_distances_one_loop(X_test)
+
+# To ensure that our vectorized implementation is correct, we make sure that it
+# agrees with the naive implementation. There are many ways to decide whether
+# two matrices are similar; one of the simplest is the Frobenius norm. In case
+# you haven't seen it before, the Frobenius norm of two matrices is the square
+# root of the squared sum of differences of all elements; in other words, reshape
+# the matrices into vectors and compute the Euclidean distance between them.
+difference = np.linalg.norm(dists - dists_one, ord='fro')
+print('One loop difference was: %f' % (difference, ))
+if difference < 0.001:
+    print('Good! The distance matrices are the same')
+else:
+    print('Uh-oh! The distance matrices are different')

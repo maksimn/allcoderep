@@ -81,8 +81,7 @@ class KNearestNeighbor:
                 x = X[i] # ith test point
                 x_train = self.X_train[j] # jth training point
                 diff = np.subtract(x, x_train)
-                d = np.linalg.norm(diff)
-                dists[i, j] = d
+                dists[i, j] = vector_length(diff)
                 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -104,7 +103,10 @@ class KNearestNeighbor:
             # Do not use np.linalg.norm().                                        #
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-            1 + 2
+            x_test = X[i] # ith test point
+            x_train_array = self.X_train
+            diffs = [np.subtract(x_test, x_train) for x_train in x_train_array]
+            dists[i, :] = [vector_length(diff) for diff in diffs]
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -162,7 +164,6 @@ class KNearestNeighbor:
             # Hint: Look up the function numpy.argsort.                             #
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
             arr = dists[i]
             k_indices = np.argsort(arr)[k:]
             closest_y = np.zeros(k)
@@ -186,3 +187,6 @@ class KNearestNeighbor:
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         return y_pred
+
+def vector_length(X):
+   return sum([v * v for v in X]) ** (1 / 2)
