@@ -140,4 +140,3 @@ plt.scatter(
 plt.scatter(x_n[:, -1], lr.predict(x_n), color="cyan", label="sklearn Ridge")
 plt.legend()
 plt.show()
-
