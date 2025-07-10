@@ -135,16 +135,16 @@ class KNearestNeighbor:
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        l2_tr = np.reshape(np.array([(vector_length(x) ** 2) for x in self.X_train]), (1, num_train))
-        l2_te_transposed = np.reshape([(vector_length(x) ** 2) for x in X], (-1, 1))
+        l2_tr = np.reshape(np.array([vector_length_2(x) for x in self.X_train]), (1, num_train))
+        l2_te_transposed = np.reshape([vector_length_2(x) for x in X], (-1, 1))
         i_tr = np.ones((1, num_train))
         i_te_transposed = np.ones((num_test, 1))
         a2_te = l2_te_transposed @ i_tr
-        print('i_te_transposed.shape =', i_te_transposed.shape)
-        print('l2_tr.shape =', l2_tr.shape)
         a2_tr = i_te_transposed @ l2_tr
-        b_te = np.transpose(X)
+        b_te = X
         c_tr = [np.transpose(x) for x in self.X_train]
+        print('b_te.shape =', b_te.shape)
+        print('c_tr.shape =', c_tr.shape)
         dists = (b_te @ c_tr) * (-2)
         dists = dists + a2_te
         dists = dists + a2_tr
@@ -204,4 +204,7 @@ class KNearestNeighbor:
         return y_pred
 
 def vector_length(X):
-   return sum([v * v for v in X]) ** (1 / 2)
+   return vector_length_2(X) ** (1 / 2)
+
+def vector_length_2(X):
+   return sum([v * v for v in X])
