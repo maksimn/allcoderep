@@ -134,8 +134,19 @@ class KNearestNeighbor:
         #       and two broadcast sums.                                         #
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
         l2_tr = [(vector_length(x) ** 2) for x in self.X_train]
         l2_te_transposed = np.transpose([(vector_length(x) ** 2) for x in X])
+        i_tr = np.ones((1, num_train))
+        i_te_transposed = np.ones((num_test, 1))
+        a2_te = l2_te_transposed @ i_tr
+        a2_tr = i_te_transposed @ l2_tr
+        b_te = np.transpose(X)
+        c_tr = [np.transpose(x) for x in self.X_train]
+        dists = (b_te @ c_tr) * (-2)
+        dists = dists + a2_te
+        dists = dists + a2_tr
+        dists = np.sqrt(dists)
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
