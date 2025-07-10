@@ -135,7 +135,8 @@ class KNearestNeighbor:
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
-        l2_tr = np.reshape(np.array([vector_length_2(x) for x in self.X_train]), (1, num_train))
+        l2_tr_array = np.array([vector_length_2(x) for x in self.X_train])
+        l2_tr = np.reshape(l2_tr_array, (1, num_train))
         l2_te_transposed = np.reshape([vector_length_2(x) for x in X], (-1, 1))
         i_tr = np.ones((1, num_train))
         i_te_transposed = np.ones((num_test, 1))
