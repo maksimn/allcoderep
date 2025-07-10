@@ -136,9 +136,11 @@ class KNearestNeighbor:
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         l2_tr = [(vector_length(x) ** 2) for x in self.X_train]
-        l2_te_transposed = np.transpose([(vector_length(x) ** 2) for x in X])
+        l2_te_transposed = np.reshape([(vector_length(x) ** 2) for x in X], (-1, 1))
         i_tr = np.ones((1, num_train))
-        i_te_transposed = np.ones((num_test, 1))
+        i_te_transposed = np.transpose(np.ones((num_test, 0)))
+        # print('l2_te_transposed.shape =', l2_te_transposed.shape)
+        # print('i_tr.shape =', i_tr.shape)
         a2_te = l2_te_transposed @ i_tr
         a2_tr = i_te_transposed @ l2_tr
         b_te = np.transpose(X)
