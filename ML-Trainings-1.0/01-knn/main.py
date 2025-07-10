@@ -108,3 +108,15 @@ if difference < 0.001:
     print('Good! The distance matrices are the same')
 else:
     print('Uh-oh! The distance matrices are different')
+
+# Now implement the fully vectorized version inside compute_distances_no_loops
+# and run the code
+dists_two = classifier.compute_distances_no_loops(X_test)
+
+# check that the distance matrix agrees with the one we computed before:
+difference = np.linalg.norm(dists - dists_two, ord='fro')
+print('No loop difference was: %f' % (difference, ))
+if difference < 0.001:
+    print('Good! The distance matrices are the same')
+else:
+    print('Uh-oh! The distance matrices are different')
