@@ -81,8 +81,7 @@ class KNearestNeighbor:
                 x = X[i] # ith test point
                 x_train = self.X_train[j] # jth training point
                 diff = np.subtract(x, x_train)
-                d = np.linalg.norm(diff)
-                dists[i, j] = d
+                dists[i, j] = vector_length(diff)
                 # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -104,7 +103,10 @@ class KNearestNeighbor:
             # Do not use np.linalg.norm().                                        #
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-            1 + 2
+            x_test = X[i] # ith test point
+            x_train_array = self.X_train
+            diffs = [np.subtract(x_test, x_train) for x_train in x_train_array]
+            dists[i, :] = [vector_length(diff) for diff in diffs]
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -132,6 +134,17 @@ class KNearestNeighbor:
         #       and two broadcast sums.                                         #
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
+
+        l2_tr_array = np.array([vector_length_2(x) for x in self.X_train])
+        l2_tr = np.reshape(l2_tr_array, (1, num_train))
+        l2_te_transposed = np.reshape([vector_length_2(x) for x in X], (-1, 1))
+        i_tr = np.ones((1, num_train))
+        i_te_transposed = np.ones((num_test, 1))
+        a2_te = l2_te_transposed @ i_tr
+        a2_tr = i_te_transposed @ l2_tr
+        b_te = np.array(X)
+        c_tr = np.transpose(self.X_train)
+        dists = np.sqrt(a2_te + a2_tr + (b_te @ c_tr * -2))
 
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
@@ -162,7 +175,6 @@ class KNearestNeighbor:
             # Hint: Look up the function numpy.argsort.                             #
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
             arr = dists[i]
             k_indices = np.argsort(arr)[k:]
             closest_y = np.zeros(k)
@@ -186,3 +198,9 @@ class KNearestNeighbor:
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         return y_pred
+
+def vector_length(X):
+   return vector_length_2(X) ** (1 / 2)
+
+def vector_length_2(X):
+   return sum([v * v for v in X])
