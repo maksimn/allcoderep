@@ -142,9 +142,7 @@ class KNearestNeighbor:
         a2_te = l2_te_transposed @ i_tr
         a2_tr = i_te_transposed @ l2_tr
         b_te = np.array(X)
-        c_tr = [np.transpose(x) for x in self.X_train]
-        print('b_te.shape =', b_te.shape)
-        print('c_tr.shape =', c_tr.shape)
+        c_tr = np.transpose(self.X_train)
         dists = (b_te @ c_tr) * (-2)
         dists = dists + a2_te
         dists = dists + a2_tr
