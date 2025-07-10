@@ -9,7 +9,7 @@ dataset = datasets.load_digits()
 # First 100 images will be used for testing. This dataset is not sorted by the labels, so it's ok
 # to do the split this way.
 # Please be careful when you split your data into train and test in general.
-test_border = 100
+test_border = 200
 X_train, y_train = dataset.data[test_border:], dataset.target[test_border:]
 X_test, y_test = dataset.data[:test_border], dataset.target[:test_border]
 
@@ -120,3 +120,68 @@ if difference < 0.001:
     print('Good! The distance matrices are the same')
 else:
     print('Uh-oh! The distance matrices are different')
+
+X_train_big = np.vstack([X_train]*5)
+X_test_big = np.vstack([X_test]*5)
+y_train_big = np.hstack([y_train]*5)
+y_test_big = np.hstack([y_test]*5)
+
+classifier_big = KNearestNeighbor()
+classifier_big.fit(X_train_big, y_train_big)
+# Let's compare how fast the implementations are
+def time_function(f, *args):
+    """
+    Call a function f with args and return the time (in seconds) that it took to execute.
+    """
+    import time
+    tic = time.time()
+    f(*args)
+    toc = time.time()
+    return toc - tic
+
+two_loop_time = time_function(classifier_big.compute_distances_two_loops, X_test_big)
+print('Two loop version took %f seconds' % two_loop_time)
+
+one_loop_time = time_function(classifier_big.compute_distances_one_loop, X_test_big)
+print('One loop version took %f seconds' % one_loop_time)
+
+no_loop_time = time_function(classifier_big.compute_distances_no_loops, X_test_big)
+print('No loop version took %f seconds' % no_loop_time)
+
+from sklearn import neighbors
+
+implemented_knn = KNearestNeighbor()
+implemented_knn.fit(X_train, y_train)
+
+n_neighbors = 1
+external_knn = neighbors.KNeighborsClassifier(n_neighbors=n_neighbors)
+external_knn.fit(X_train, y_train)
+print('sklearn kNN (k=1) implementation achieves: {} accuracy on the test set'.format(
+    external_knn.score(X_test, y_test)
+))
+y_predicted = implemented_knn.predict(X_test, k=n_neighbors).astype(int)
+accuracy_score = sum((y_predicted==y_test).astype(float)) / num_test
+print('Handcrafted kNN (k=1) implementation achieves: {} accuracy on the test set'.format(accuracy_score))
+assert np.array_equal(
+    external_knn.predict(X_test),
+    y_predicted
+), 'Labels predicted by handcrafted and sklearn kNN implementations are different!'
+print('\nsklearn and handcrafted kNN implementations provide same predictions')
+print('_'*76)
+
+
+n_neighbors = 5
+external_knn = neighbors.KNeighborsClassifier(n_neighbors=n_neighbors)
+external_knn.fit(X_train, y_train)
+print('sklearn kNN (k=5) implementation achieves: {} accuracy on the test set'.format(
+    external_knn.score(X_test, y_test)
+))
+y_predicted = implemented_knn.predict(X_test, k=n_neighbors).astype(int)
+accuracy_score = sum((y_predicted==y_test).astype(float)) / num_test
+print('Handcrafted kNN (k=5) implementation achieves: {} accuracy on the test set'.format(accuracy_score))
+assert np.array_equal(
+    external_knn.predict(X_test),
+    y_predicted
+), 'Labels predicted by handcrafted and sklearn kNN implementations are different!'
+print('\nsklearn and handcrafted kNN implementations provide same predictions')
+print('_'*76)
