@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
+import scipy
 import seaborn as sns
 from sklearn import datasets
 
@@ -9,12 +10,8 @@ matplotlib.rcParams['font.size'] = 11
 
 dataset = datasets.load_iris()
 
-# print(dataset.DESCR)
-
 features = dataset.data
 target = dataset.target
-
-features.shape, target.shape
 
 class GaussianDistribution:
     def __init__(self, feature):
@@ -33,8 +30,6 @@ class GaussianDistribution:
     
     def pdf(self, value):
         return np.exp(self.logpdf(value)) # <YOUR CODE HERE>
-
-import scipy
 
 _test = scipy.stats.norm(loc=features[:, :2].mean(axis=0), scale=features[:, :2].std(axis=0))
 assert np.allclose(
