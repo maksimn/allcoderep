@@ -50,7 +50,6 @@ def fitting_tests():
         
         assert train_loss_log[-2] > train_loss_log[-1] and abs(train_loss_log[-2]/train_loss_log[-1]) < 2, '{}, {}'.format(train_loss_log[-2], train_loss_log[-1])
 
-def make_plot():
     plt.plot(range(1, len(train_loss_log)+1), train_loss_log, label='train')
     plt.plot(range(1, len(val_loss_log)+1), val_loss_log, label='val')
     plt.xlabel('Ensemble size')
@@ -60,4 +59,3 @@ def make_plot():
 overfitting_tests()
 # zero_lr_tests()
 # fitting_tests()
-# make_plot()
