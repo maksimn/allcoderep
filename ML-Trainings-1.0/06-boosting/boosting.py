@@ -14,8 +14,11 @@ class SimplifiedBoostingRegressor:
     
     @staticmethod
     def loss_gradients(targets, predictions):
-        gradients = None # YOUR CODE HERE
         assert gradients.shape == targets.shape
+
+        n_observations = targets.shape[0]
+        gradients = (predictions - targets) * (2 / n_observations) # YOUR CODE HERE
+
         return gradients
         
         
