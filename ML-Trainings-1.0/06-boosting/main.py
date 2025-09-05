@@ -36,9 +36,9 @@ def fitting_tests():
         data_train, targets_train = data[indices[:700]], targets[indices[:700]]
         data_val, targets_val = data[indices[700:]], targets[indices[700:]]
 
-
         train_loss_log = []
         val_loss_log = []
+
         for depth in range(1, 25):
             boosting_regressor = SimplifiedBoostingRegressor()    
 
