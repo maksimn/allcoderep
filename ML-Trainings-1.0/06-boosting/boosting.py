@@ -44,11 +44,12 @@ class SimplifiedBoostingRegressor:
             except TypeError:
                 print('max_depth keyword is not found. Ignoring')
                 model = model_constructor()
+            
             self.models_list.append(model.fit(data, new_targets))
             predictions = self.predict(data)
             self.loss_log.append(self.loss(targets, predictions))
             gradients = self.loss_gradients(targets, predictions)
-            new_targets = None # YOUR CODE HERE
+            new_targets = gradients * (-1)
 
         if verbose:
             print('Finished! Loss=', self.loss_log[-1])
@@ -60,5 +61,5 @@ class SimplifiedBoostingRegressor:
 
         for model in self.models_list:
             predictions += None # YOUR CODE HERE
-            
+
         return predictions
