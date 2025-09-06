@@ -49,7 +49,7 @@ class SimplifiedBoostingRegressor:
             predictions = self.predict(data)
             self.loss_log.append(self.loss(targets, predictions))
             gradients = self.loss_gradients(targets, predictions)
-            new_targets = gradients * (-1)
+            new_targets = gradients
 
         if verbose:
             print('Finished! Loss=', self.loss_log[-1])
