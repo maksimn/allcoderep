@@ -37,6 +37,7 @@ class SimplifiedBoostingRegressor:
         self.models_list = []
         self.lr = lr
         self.loss_log = []
+
         for step in range(num_steps):
             try:
                 model = model_constructor(max_depth=max_depth)
@@ -48,12 +49,16 @@ class SimplifiedBoostingRegressor:
             self.loss_log.append(self.loss(targets, predictions))
             gradients = self.loss_gradients(targets, predictions)
             new_targets = None # YOUR CODE HERE
+
         if verbose:
             print('Finished! Loss=', self.loss_log[-1])
+
         return self
             
     def predict(self, data):
         predictions = np.zeros(len(data))
+
         for model in self.models_list:
             predictions += None # YOUR CODE HERE
+            
         return predictions
