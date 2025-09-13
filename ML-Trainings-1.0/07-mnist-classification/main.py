@@ -3,25 +3,11 @@ import numpy as np
 import torch
 from torch import nn
 from torch.nn import functional as F
-import torch.optim as optim
 
 import torchvision
 from torchvision.datasets import MNIST
 
 from matplotlib import pyplot as plt
-
-class SimpleNN(nn.Module):
-    def __init__(self):
-        super(SimpleNN, self).__init__()
-        self.fc1 = nn.Linear(10, 50)    # Input layer -> hidden layer
-        self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(50, 10)     # Hidden layer -> output layer for 2 classes
-
-    def forward(self, x):
-        x1 = self.fc1(x)
-        x2 = self.relu(x1)
-        x3 = self.fc2(x2)
-        return x3
 
 # from IPython.display import clear_output
 
@@ -44,25 +30,7 @@ plt.title(f'Image label: {_label}')
 plt.savefig('img1.png')
 
 # Creating model instance
-model = SimpleNN() # your code here
-
-criterion = nn.CrossEntropyLoss()   # suitable for classification
-optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-num_epochs = 10
-
-for epoch in range(num_epochs):
-    running_loss = 0.0
-    for inputs, labels in train_data_loader:
-        optimizer.zero_grad()           # Clear gradients
-        outputs = model.forward(inputs)         # Forward pass
-        loss = criterion(outputs, labels) # Compute loss
-        loss.backward()                 # Backward pass
-        optimizer.step()                # Update weights
-
-        running_loss += loss.item()
-
-    print(f"Epoch {epoch + 1} - Loss: {running_loss / len(train_data_loader):.4f}")
+model = None # your code here
 
 # do not change the code in the block below
 # __________start of block__________
