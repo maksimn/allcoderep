@@ -15,13 +15,13 @@ class SimpleNN(nn.Module):
         super(SimpleNN, self).__init__()
         self.fc1 = nn.Linear(10, 50)    # Input layer -> hidden layer
         self.relu = nn.ReLU()
-        self.fc2 = nn.Linear(50, 2)     # Hidden layer -> output layer for 2 classes
+        self.fc2 = nn.Linear(50, 10)     # Hidden layer -> output layer for 2 classes
 
     def forward(self, x):
-        x = self.fc1(x)
-        x = self.relu(x)
-        x = self.fc2(x)
-        return x
+        x1 = self.fc1(x)
+        x2 = self.relu(x1)
+        x3 = self.fc2(x2)
+        return x3
 
 # from IPython.display import clear_output
 
