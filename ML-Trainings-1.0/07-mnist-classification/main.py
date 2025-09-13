@@ -30,6 +30,7 @@ plt.title(f'Image label: {_label}')
 plt.savefig('img1.png')
 
 # Creating model instance
+# Постройте NN-модель ниже.
 model = None # your code here
 
 # do not change the code in the block below
@@ -46,12 +47,13 @@ except Exception as e:
     print('Something is wrong with the model')
     raise e
     
-    
+
 assert y_predicted.shape[-1] == 10, 'Model should predict 10 logits/probas'
 
 print('Everything seems fine!')
 # __________end of block__________
 
+# Настройте параметры модели на обучающей выборке. 
 # your code here
 
 predicted_labels = []
