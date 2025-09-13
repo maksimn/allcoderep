@@ -3,11 +3,26 @@ import numpy as np
 import torch
 from torch import nn
 from torch.nn import functional as F
+import torch.optim as optim
 
 import torchvision
 from torchvision.datasets import MNIST
 
 from matplotlib import pyplot as plt
+
+class SimpleNN(nn.Module):
+    def __init__(self):
+        super(SimpleNN, self).__init__()
+        self.fc1 = nn.Linear(10, 50)    # Input layer -> hidden layer
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(50, 2)     # Hidden layer -> output layer for 2 classes
+
+    def forward(self, x):
+        x = self.fc1(x)
+        x = self.relu(x)
+        x = self.fc2(x)
+        return x
+
 # from IPython.display import clear_output
 
 # do not change the code in the block below
@@ -20,6 +35,7 @@ train_data_loader = torch.utils.data.DataLoader(train_mnist_data, batch_size=32,
 test_data_loader = torch.utils.data.DataLoader(test_mnist_data, batch_size=32, shuffle=False, num_workers=0)
 
 random_batch = next(iter(train_data_loader))
+print(random_batch)
 _image, _label = random_batch[0][0], random_batch[1][0]
 plt.figure()
 plt.imshow(_image.reshape(28, 28))
@@ -28,7 +44,25 @@ plt.title(f'Image label: {_label}')
 plt.savefig('img1.png')
 
 # Creating model instance
-model = None # your code here
+model = SimpleNN() # your code here
+
+criterion = nn.CrossEntropyLoss()   # suitable for classification
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+num_epochs = 10
+
+for epoch in range(num_epochs):
+    running_loss = 0.0
+    for inputs, labels in train_data_loader:
+        optimizer.zero_grad()           # Clear gradients
+        outputs = model.forward(inputs)         # Forward pass
+        loss = criterion(outputs, labels) # Compute loss
+        loss.backward()                 # Backward pass
+        optimizer.step()                # Update weights
+
+        running_loss += loss.item()
+
+    print(f"Epoch {epoch + 1} - Loss: {running_loss / len(train_data_loader):.4f}")
 
 # do not change the code in the block below
 # __________start of block__________
