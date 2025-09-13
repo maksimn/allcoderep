@@ -43,6 +43,7 @@ class MyNeuralNetwork(nn.Module):
         self.classifier = nn.Linear(50, 10) # Hidden layer -> output layer for 2 classes
 
     def forward(self, x):
+        x = x.reshape(-1, 784)
         x = self.linearLayer(x)
         x = self.relu(x)
         x = self.classifier(x)
