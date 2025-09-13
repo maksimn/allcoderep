@@ -75,7 +75,7 @@ print('Everything seems fine!')
 # your code here
 
 criterion = nn.CrossEntropyLoss()  
-optimizer = optim.Adam(model.parameters(), lr=0.1)
+optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=0.9)
 
 num_epochs = 10
 loader = train_data_loader
