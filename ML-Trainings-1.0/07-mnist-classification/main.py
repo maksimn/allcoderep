@@ -76,6 +76,22 @@ print('Everything seems fine!')
 # Настройте параметры модели на обучающей выборке. 
 # your code here
 
+num_epochs = 10
+loader = train_data_loader
+
+for epoch in range(num_epochs):
+    running_loss = 0.0
+    for inputs, labels in loader:
+        optimizer.zero_grad()           # Clear gradients
+        outputs = model(inputs)         # Forward pass
+        loss = criterion(outputs, labels) # Compute loss
+        loss.backward()                 # Backward pass
+        optimizer.step()                # Update weights
+
+        running_loss += loss.item()
+
+    print(f"Epoch {epoch + 1} - Loss: {running_loss / len(loader):.4f}")
+
 predicted_labels = []
 real_labels = []
 model.eval()
