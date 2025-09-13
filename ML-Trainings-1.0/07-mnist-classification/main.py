@@ -16,20 +16,8 @@ from matplotlib import pyplot as plt
 train_mnist_data = MNIST('.', train=True, transform=torchvision.transforms.ToTensor(), download=True)
 test_mnist_data = MNIST('.', train=False, transform=torchvision.transforms.ToTensor(), download=True)
 
-
-train_data_loader = torch.utils.data.DataLoader(
-    train_mnist_data,
-    batch_size=32,
-    shuffle=True,
-    num_workers=2
-)
-
-test_data_loader = torch.utils.data.DataLoader(
-    test_mnist_data,
-    batch_size=32,
-    shuffle=False,
-    num_workers=2
-)
+train_data_loader = torch.utils.data.DataLoader(train_mnist_data, batch_size=32, shuffle=True, num_workers=0)
+test_data_loader = torch.utils.data.DataLoader(test_mnist_data, batch_size=32, shuffle=False, num_workers=0)
 
 random_batch = next(iter(train_data_loader))
 _image, _label = random_batch[0][0], random_batch[1][0]
@@ -37,6 +25,7 @@ plt.figure()
 plt.imshow(_image.reshape(28, 28))
 plt.title(f'Image label: {_label}')
 # __________end of block__________
+plt.savefig('img1.png')
 
 # Creating model instance
 model = None # your code here
