@@ -6,6 +6,7 @@ from torch.nn import functional as F
 
 import torchvision
 from torchvision.datasets import MNIST
+import torch.optim as optim
 
 from matplotlib import pyplot as plt
 
@@ -21,7 +22,6 @@ train_data_loader = torch.utils.data.DataLoader(train_mnist_data, batch_size=32,
 test_data_loader = torch.utils.data.DataLoader(test_mnist_data, batch_size=32, shuffle=False, num_workers=0)
 
 random_batch = next(iter(train_data_loader))
-print(random_batch)
 _image, _label = random_batch[0][0], random_batch[1][0]
 plt.figure()
 plt.imshow(_image.reshape(28, 28))
@@ -31,7 +31,27 @@ plt.savefig('img1.png')
 
 # Creating model instance
 # Постройте NN-модель ниже.
-model = None # your code here
+
+# print('image=', _image)
+
+class MyNeuralNetwork(nn.Module):
+
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(784, 50) # Input layer -> hidden layer
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(50, 10) # Hidden layer -> output layer for 2 classes
+
+    def forward(self, x):
+        x = self.fc1(x)
+        x = self.relu(x)
+        x = self.fc2(x)
+        return x
+
+model = MyNeuralNetwork() # your code here
+
+criterion = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=0.9)
 
 # do not change the code in the block below
 # __________start of block__________
