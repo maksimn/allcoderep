@@ -27,7 +27,7 @@ plt.figure()
 plt.imshow(_image.reshape(28, 28))
 plt.title(f'Image label: {_label}')
 # __________end of block__________
-plt.savefig('img1.png')
+# plt.savefig('img1.png')
 
 # Creating model instance
 # Постройте NN-модель ниже.
