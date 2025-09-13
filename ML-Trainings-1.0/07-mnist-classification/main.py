@@ -50,9 +50,6 @@ class MyNeuralNetwork(nn.Module):
 
 model = MyNeuralNetwork() # your code here
 
-criterion = nn.CrossEntropyLoss()  
-optimizer = optim.Adam(model.parameters(), lr=0.1)
-
 # do not change the code in the block below
 # __________start of block__________
 assert model is not None, 'Please, use `model` variable to store your model'
@@ -75,6 +72,9 @@ print('Everything seems fine!')
 
 # Настройте параметры модели на обучающей выборке. 
 # your code here
+
+criterion = nn.CrossEntropyLoss()  
+optimizer = optim.Adam(model.parameters(), lr=0.1)
 
 num_epochs = 10
 loader = train_data_loader
