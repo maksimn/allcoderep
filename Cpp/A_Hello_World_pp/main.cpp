@@ -1,6 +1,8 @@
-#include <iostream> 
+// #include "entrance_task_2_12.cpp"
+#include "entrance_task_12.cpp"
 
 int main() {
-    std::cout << "Jazz funk is the best" << std::endl;
+    // entrance_task_2_12();
+    entrance_task_12_tests();
     return 0;
 }
