@@ -5,15 +5,17 @@
 //  Created by Maksim Ivanov on 30.06.2026.
 //
 
+import Foundation
 import Testing
 @testable import Musician2
 
 struct Musician2Tests {
 
     @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
-    }
+        let mock = NetworkDataLoaderMock { _ in Data() }
 
+        let result = try await mock.download(URL(string: "https://example.com")!)
+
+        #expect(result == Data())
+    }
 }
