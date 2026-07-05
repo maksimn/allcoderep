@@ -14,35 +14,35 @@
 			remoteGlobalIDString = 0C4CF2CD2FF4350300A3EC82;
 			remoteInfo = Musician2;
 		};
-		0C4CF2E82FF4350500A3EC82 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0C4CF2C62FF4350300A3EC82 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0C4CF2CD2FF4350300A3EC82;
-			remoteInfo = Musician2;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0C4CF2CE2FF4350300A3EC82 /* Musician2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musician2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4CF2DD2FF4350500A3EC82 /* Musician2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Musician2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C4CF2E72FF4350500A3EC82 /* Musician2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Musician2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0CD4A0642FFAA86F00EB0BE3 /* Exceptions for "Musician2" folder in "Musician2" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0C4CF2CD2FF4350300A3EC82 /* Musician2 */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0C4CF2D02FF4350300A3EC82 /* Musician2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0CD4A0642FFAA86F00EB0BE3 /* Exceptions for "Musician2" folder in "Musician2" target */,
+			);
 			path = Musician2;
 			sourceTree = "<group>";
 		};
 		0C4CF2E02FF4350500A3EC82 /* Musician2Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Musician2Tests;
-			sourceTree = "<group>";
-		};
-		0C4CF2EA2FF4350500A3EC82 /* Musician2UITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Musician2UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -62,13 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0C4CF2E42FF4350500A3EC82 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,7 +70,6 @@
 			children = (
 				0C4CF2D02FF4350300A3EC82 /* Musician2 */,
 				0C4CF2E02FF4350500A3EC82 /* Musician2Tests */,
-				0C4CF2EA2FF4350500A3EC82 /* Musician2UITests */,
 				0C4CF2CF2FF4350300A3EC82 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +79,6 @@
 			children = (
 				0C4CF2CE2FF4350300A3EC82 /* Musician2.app */,
 				0C4CF2DD2FF4350500A3EC82 /* Musician2Tests.xctest */,
-				0C4CF2E72FF4350500A3EC82 /* Musician2UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,29 +131,6 @@
 			productReference = 0C4CF2DD2FF4350500A3EC82 /* Musician2Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0C4CF2E62FF4350500A3EC82 /* Musician2UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0C4CF2F72FF4350500A3EC82 /* Build configuration list for PBXNativeTarget "Musician2UITests" */;
-			buildPhases = (
-				0C4CF2E32FF4350500A3EC82 /* Sources */,
-				0C4CF2E42FF4350500A3EC82 /* Frameworks */,
-				0C4CF2E52FF4350500A3EC82 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0C4CF2E92FF4350500A3EC82 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				0C4CF2EA2FF4350500A3EC82 /* Musician2UITests */,
-			);
-			name = Musician2UITests;
-			packageProductDependencies = (
-			);
-			productName = Musician2UITests;
-			productReference = 0C4CF2E72FF4350500A3EC82 /* Musician2UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,10 +145,6 @@
 						CreatedOnToolsVersion = 26.6;
 					};
 					0C4CF2DC2FF4350500A3EC82 = {
-						CreatedOnToolsVersion = 26.6;
-						TestTargetID = 0C4CF2CD2FF4350300A3EC82;
-					};
-					0C4CF2E62FF4350500A3EC82 = {
 						CreatedOnToolsVersion = 26.6;
 						TestTargetID = 0C4CF2CD2FF4350300A3EC82;
 					};
@@ -202,7 +166,6 @@
 			targets = (
 				0C4CF2CD2FF4350300A3EC82 /* Musician2 */,
 				0C4CF2DC2FF4350500A3EC82 /* Musician2Tests */,
-				0C4CF2E62FF4350500A3EC82 /* Musician2UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,13 +179,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0C4CF2DB2FF4350500A3EC82 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0C4CF2E52FF4350500A3EC82 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,13 +202,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0C4CF2E32FF4350500A3EC82 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -260,11 +209,6 @@
 			isa = PBXTargetDependency;
 			target = 0C4CF2CD2FF4350300A3EC82 /* Musician2 */;
 			targetProxy = 0C4CF2DE2FF4350500A3EC82 /* PBXContainerItemProxy */;
-		};
-		0C4CF2E92FF4350500A3EC82 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0C4CF2CD2FF4350300A3EC82 /* Musician2 */;
-			targetProxy = 0C4CF2E82FF4350500A3EC82 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -397,6 +341,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Musician2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +373,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Musician2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -492,44 +438,6 @@
 			};
 			name = Release;
 		};
-		0C4CF2F82FF4350500A3EC82 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.maksimn.Musician2UITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Musician2;
-			};
-			name = Debug;
-		};
-		0C4CF2F92FF4350500A3EC82 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.maksimn.Musician2UITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Musician2;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -556,15 +464,6 @@
 			buildConfigurations = (
 				0C4CF2F52FF4350500A3EC82 /* Debug */,
 				0C4CF2F62FF4350500A3EC82 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0C4CF2F72FF4350500A3EC82 /* Build configuration list for PBXNativeTarget "Musician2UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0C4CF2F82FF4350500A3EC82 /* Debug */,
-				0C4CF2F92FF4350500A3EC82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
