@@ -49,12 +49,11 @@ struct AlbumListView: View {
     @ViewBuilder
     private var listContent: some View {
         List(viewModel.albums, id: \.albumId) { album in
-            NavigationLink {
-                AlbumDetailView(album: album)
-            } label: {
-                AlbumRowView(album: album)
-            }
+            AlbumRowView(album: album)
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
         }
+        .listStyle(.plain)
     }
 }
 
@@ -64,39 +63,46 @@ private struct AlbumRowView: View {
     let album: Album
 
     var body: some View {
-        HStack(spacing: 12) {
-            AsyncImage(url: URL(string: album.albumCover)) { phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                case .failure:
-                    placeholderImage
-                case .empty:
-                    ProgressView()
-                @unknown default:
-                    placeholderImage
-                }
-            }
-            .frame(width: 60, height: 60)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+        let albumColor = Color(hex: album.albumMedianColor) ?? .clear
+        let textColor = albumTextColor(for: albumColor)
 
-            VStack(alignment: .leading, spacing: 4) {
+        HStack(alignment: .top, spacing: 0) {
+            // Первый дочерний элемент: AsyncImage с фиксированными размерами и отступами
+            AsyncImage(url: URL(string: album.albumCover)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            } placeholder: {
+                placeholderImage
+            }
+            .frame(width: 96, height: 96)
+            .padding(.top, 24)
+            .padding(.leading, 24)
+
+            // Второй дочерний элемент: Контейнер, занимающий всю оставшуюся область
+            VStack(alignment: .leading, spacing: 0) {
                 Text(album.albumName)
-                    .font(.headline)
-                    .lineLimit(1)
+                    .font(.system(size: 17, weight: .bold))
+                    .foregroundColor(textColor)
+                    .padding(.top, 24)
+                    .padding(.leading, 24)
+                    .padding(.trailing, 24)
 
-                Text("\(album.albumYear)")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                Spacer() // Толкает второй текст к нижнему краю
 
-                Text("\(album.tracks.count) tracks")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                Text("Альбом, \(album.albumYear)")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(textColor)
+                    .padding(.bottom, 24)
+                    .padding(.leading, 24)
             }
+            // Растягивает VStack на всю доступную ширину и высоту
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         }
-        .padding(.vertical, 4)
+        // Задаем точные размеры для корневого HStack
+        .frame(maxWidth: .infinity)
+        .frame(height: 144)
+        .background(albumColor)
     }
 
     private var placeholderImage: some View {
@@ -107,6 +113,10 @@ private struct AlbumRowView: View {
                     .foregroundStyle(.secondary)
             }
     }
+}
+
+func albumTextColor(for color: Color) -> Color {
+    color.isBright ? Color(red: 0.15, green: 0.15, blue: 0.15) : .white
 }
 
 // MARK: - Album Detail
@@ -147,7 +157,7 @@ private struct AlbumDetailView: View {
         albumId: 1,
         albumName: "Test Album",
         albumYear: 2024,
-        albumCover: "https://example.com/cover.jpg",
+        albumCover: "http://maksimn.github.io/elizarov/jpg/notebook.jpg",
         albumMedianColor: "#FF5733",
         tracks: [track]
     )
