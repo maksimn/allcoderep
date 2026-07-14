@@ -9,17 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
-        AlbumListView(
-            viewModel: AlbumListViewModel(
-                repository: AlbumRepository(
-                    dataLoader: URLSessionNetworkDataLoader(),
-                    modelContext: modelContext
-                )
-            )
-        )
+        AlbumListFeature()
     }
 }
 
