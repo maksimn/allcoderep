@@ -8,9 +8,20 @@
 import SwiftData
 import SwiftUI
 
+enum PlayerState: Equatable {
+    case initial, loading, loaded, error
+}
+
 struct AudioPlayerView: View {
 
     let track: Track
+
+    @State private var viewModel: AudioPlayerViewModel
+
+    init(track: Track, viewModel: AudioPlayerViewModel) {
+        self.track = track
+        _viewModel = State(wrappedValue: viewModel)
+    }
 
     var body: some View {
         HStack(spacing: 0) {
@@ -34,6 +45,12 @@ struct AudioPlayerView: View {
 
                     Spacer()
 
+                    if viewModel.state == .loading {
+                        ProgressView()
+                            .tint(.white)
+                            .padding(.trailing, 4)
+                    }
+
                     Text(track.duration)
                         .font(Font.custom("Helvetica Bold", size: 16))
                         .foregroundColor(.white.opacity(0.8))
@@ -43,7 +60,8 @@ struct AudioPlayerView: View {
 
                 Rectangle()
                     .fill(.white)
-                    .frame(width: .infinity, height: 2)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 2)
                     .padding(.leading, 10)
                     .padding(.trailing, 56)
                     .padding(.top, 8)
@@ -54,6 +72,10 @@ struct AudioPlayerView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 76)
         .background(Color(red: 0.15, green: 0.15, blue: 0.15))
+        .task {
+            guard let url = URL(string: track.url) else { return }
+            await viewModel.loadTrack(from: url)
+        }
     }
 }
 
@@ -65,6 +87,9 @@ struct AudioPlayerView: View {
         duration: "3:45"
     )
 
-    AudioPlayerView(track: track)
-        .modelContainer(for: [Album.self, Track.self], inMemory: true)
+    AudioPlayerView(
+        track: track,
+        viewModel: AudioPlayerViewModel(dataLoader: URLSessionNetworkDataLoader())
+    )
+    .modelContainer(for: [Album.self, Track.self], inMemory: true)
 }
