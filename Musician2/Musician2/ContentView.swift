@@ -12,6 +12,10 @@ struct ContentView: View {
 
     var body: some View {
         AlbumListFeature()
+        AudioPlayerView(
+            track: Track(trackId: 1, name: "Матрица", url: "http://maksimn.github.io/elizarov/notebook/matritsa.mp3", duration: "3:19", album: nil),
+            viewModel: AudioPlayerViewModel(dataLoader: URLSessionNetworkDataLoader())
+        )
     }
 }
 
