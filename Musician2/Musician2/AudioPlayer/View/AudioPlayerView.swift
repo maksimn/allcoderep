@@ -8,36 +8,40 @@
 import SwiftData
 import SwiftUI
 
-enum PlayerState: Equatable {
-    case initial, loading, loaded, error
-}
-
 struct AudioPlayerView: View {
-
-    let track: Track
 
     @State private var viewModel: AudioPlayerViewModel
 
-    init(track: Track, viewModel: AudioPlayerViewModel) {
-        self.track = track
+    init(viewModel: AudioPlayerViewModel) {
         _viewModel = State(wrappedValue: viewModel)
     }
 
     var body: some View {
         HStack(spacing: 0) {
-            Button(action: {
-
-            }) {
-                Image("icon-play")
-                    .resizable()
-                    .frame(width: 44, height: 44)
+            HStack(spacing: 0) {
+                Button(action: {
+                    viewModel.play()
+                }) {
+                    if viewModel.state == .playing {
+                        Image("icon-stop")
+                            .resizable()
+                            .frame(width: 36, height: 36)
+                            .padding(.leading, 18)
+                            .padding(.top, 2)
+                    } else {
+                        Image("icon-play")
+                            .resizable()
+                            .frame(width: 44, height: 44)
+                            .padding(.leading, 18)
+                            .padding(.top, 2)
+                    }
+                }
             }
-            .padding(.leading, 10)
-            .padding(.top, 2)
+            .frame(width: 56, height: 76)
 
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 0) {
-                    Text(track.name)
+                    Text(viewModel.track.name)
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.white)
                         .lineLimit(1)
@@ -51,7 +55,7 @@ struct AudioPlayerView: View {
                             .padding(.trailing, 4)
                     }
 
-                    Text(track.duration)
+                    Text(viewModel.track.duration)
                         .font(Font.custom("Helvetica Bold", size: 16))
                         .foregroundColor(.white.opacity(0.8))
                         .padding(.trailing, 20)
@@ -73,8 +77,7 @@ struct AudioPlayerView: View {
         .frame(height: 76)
         .background(Color(red: 0.15, green: 0.15, blue: 0.15))
         .task {
-            guard let url = URL(string: track.url) else { return }
-            await viewModel.loadTrack(from: url)
+            await viewModel.loadTrack()
         }
     }
 }
@@ -88,8 +91,11 @@ struct AudioPlayerView: View {
     )
 
     AudioPlayerView(
-        track: track,
-        viewModel: AudioPlayerViewModel(dataLoader: URLSessionNetworkDataLoader())
+        viewModel: AudioPlayerViewModel(
+            track: track,
+            dataLoader: URLSessionNetworkDataLoader(),
+            audioPlayerService: AVAudioPlayerService()
+        )
     )
     .modelContainer(for: [Album.self, Track.self], inMemory: true)
 }
