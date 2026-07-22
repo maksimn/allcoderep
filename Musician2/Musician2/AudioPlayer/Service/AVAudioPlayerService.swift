@@ -11,6 +11,14 @@ final class AVAudioPlayerService: AudioPlayerService {
 
     private var audioPlayer: AVAudioPlayer?
 
+    var currentTime: TimeInterval {
+        audioPlayer?.currentTime ?? 0
+    }
+
+    var duration: TimeInterval {
+        audioPlayer?.duration ?? 0
+    }
+
     func initialize(with data: Data) throws {
         audioPlayer = try AVAudioPlayer(data: data)
     }
