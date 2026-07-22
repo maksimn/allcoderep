@@ -14,4 +14,8 @@ protocol AudioPlayerService {
     func play()
 
     func pause()
+
+    var currentTime: TimeInterval { get }
+
+    var duration: TimeInterval { get }
 }

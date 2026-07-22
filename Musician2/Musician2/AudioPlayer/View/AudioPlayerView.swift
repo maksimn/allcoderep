@@ -55,15 +55,16 @@ struct AudioPlayerView: View {
                             .padding(.trailing, 4)
                     }
 
-                    Text(viewModel.track.duration)
+                    Text(isPlayingOrPaused ? formattedTime(viewModel.currentTime) : viewModel.track.duration)
                         .font(Font.custom("Helvetica Bold", size: 16))
                         .foregroundColor(.white.opacity(0.8))
                         .padding(.trailing, 20)
                 }
                 .padding(.top, 4)
 
-                Rectangle()
-                    .fill(.white)
+                ProgressView(value: isPlayingOrPaused ? viewModel.progress : 1.0)
+                    .tint(.white)
+                    .background(.black)
                     .frame(maxWidth: .infinity)
                     .frame(height: 2)
                     .padding(.leading, 10)
@@ -79,6 +80,16 @@ struct AudioPlayerView: View {
         .task {
             await viewModel.loadTrack()
         }
+    }
+
+    private var isPlayingOrPaused: Bool {
+        viewModel.state == .playing || viewModel.state == .paused
+    }
+
+    private func formattedTime(_ time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%d:%02d", minutes, seconds)
     }
 }
 

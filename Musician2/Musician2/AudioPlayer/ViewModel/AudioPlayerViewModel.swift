@@ -8,7 +8,7 @@
 import Foundation
 import Observation
 
-enum PlayerState: Equatable {
+enum AudioPlayerState: Equatable {
     case initial, loading, loaded, playing, paused, error
 }
 
@@ -17,9 +17,15 @@ final class AudioPlayerViewModel {
 
     let track: Track
 
-    private(set) var state: PlayerState = .initial
+    private(set) var state: AudioPlayerState = .initial
+
+    private(set) var progress = 0.0
+
+    private(set) var currentTime: TimeInterval = 0.0
 
     private var data: Data?
+
+    private var timer: Timer?
 
     private let dataLoader: NetworkDataLoader
 
@@ -57,13 +63,41 @@ final class AudioPlayerViewModel {
             if state == .loaded || state == .paused {
                 audioPlayerService.play()
                 state = .playing
+                stopProgressTimer()
+                startProgressTimer()
             } else if state == .playing {
                 audioPlayerService.pause()
                 state = .paused
+                stopProgressTimer()
             }
-            
         } catch {
             state = .error
         }
+    }
+
+    // MARK: - Progress tracking
+
+    private func startProgressTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+
+                let duration = audioPlayerService.duration
+
+                guard duration > 0 else { return }
+
+                currentTime = audioPlayerService.currentTime
+                progress = currentTime / duration
+            }
+        }
+    }
+
+    private func stopProgressTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+
+    deinit {
+        timer?.invalidate()
     }
 }
