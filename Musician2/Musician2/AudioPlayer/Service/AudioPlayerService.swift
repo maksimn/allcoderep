@@ -19,3 +19,10 @@ protocol AudioPlayerService {
 
     var duration: TimeInterval { get }
 }
+
+protocol AudioPlayerTimingService {
+
+    var currentTime: TimeInterval { get }
+
+    var duration: TimeInterval { get }
+}
