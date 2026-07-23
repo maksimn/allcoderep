@@ -5,23 +5,20 @@
 //  Created by Maksim Ivanov on 12.07.2026.
 //
 
-import SwiftData
 import SwiftUI
 
 struct AudioPlayerView: View {
 
     @State private var viewModel: AudioPlayerViewModel
 
-    init(viewModel: AudioPlayerViewModel) {
+    init(viewModel: some AudioPlayerViewModel) {
         _viewModel = State(wrappedValue: viewModel)
     }
 
     var body: some View {
         HStack(spacing: 0) {
             HStack(spacing: 0) {
-                Button(action: {
-                    viewModel.play()
-                }) {
+                Button(action: viewModel.play) {
                     if viewModel.state == .playing {
                         Image("icon-stop")
                             .resizable()
@@ -55,14 +52,14 @@ struct AudioPlayerView: View {
                             .padding(.trailing, 4)
                     }
 
-                    Text(isPlayingOrPaused ? formattedTime(viewModel.currentTime) : viewModel.track.duration)
+                    Text(viewModel.timeDisplay)
                         .font(Font.custom("Helvetica Bold", size: 16))
                         .foregroundColor(.white.opacity(0.8))
                         .padding(.trailing, 20)
                 }
                 .padding(.top, 4)
 
-                ProgressView(value: isPlayingOrPaused ? viewModel.progress : 1.0)
+                ProgressView(value: viewModel.progressValue)
                     .tint(.white)
                     .background(.black)
                     .frame(maxWidth: .infinity)
@@ -81,32 +78,8 @@ struct AudioPlayerView: View {
             await viewModel.loadTrack()
         }
     }
-
-    private var isPlayingOrPaused: Bool {
-        viewModel.state == .playing || viewModel.state == .paused
-    }
-
-    private func formattedTime(_ time: TimeInterval) -> String {
-        let minutes = Int(time) / 60
-        let seconds = Int(time) % 60
-        return String(format: "%d:%02d", minutes, seconds)
-    }
 }
 
 #Preview {
-    let track = Track(
-        trackId: 1,
-        name: "Test Song",
-        url: "https://example.com",
-        duration: "3:45"
-    )
-
-    AudioPlayerView(
-        viewModel: AudioPlayerViewModel(
-            track: track,
-            dataLoader: URLSessionNetworkDataLoader(),
-            audioPlayerService: AVAudioPlayerService()
-        )
-    )
-    .modelContainer(for: [Album.self, Track.self], inMemory: true)
+    AudioPlayerFeature()
 }

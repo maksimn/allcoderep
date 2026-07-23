@@ -8,12 +8,26 @@
 import Foundation
 import Observation
 
+@MainActor
+protocol AudioPlayerViewModel {
+
+    var track: Track { get }
+    var state: AudioPlayerState { get }
+    var progress: Double { get }
+    var currentTime: TimeInterval { get }
+    var timeDisplay: String { get }
+    var progressValue: Double { get }
+
+    func loadTrack() async
+    func play()
+}
+
 enum AudioPlayerState: Equatable {
     case initial, loading, loaded, playing, paused, error
 }
 
 @Observable
-final class AudioPlayerViewModel {
+final class AudioPlayerViewModelImpl: AudioPlayerViewModel {
 
     let track: Track
 
@@ -23,24 +37,44 @@ final class AudioPlayerViewModel {
 
     private(set) var currentTime: TimeInterval = 0.0
 
-    private var data: Data?
+    var timeDisplay: String {
+        isActive ? formattedTime(currentTime) : track.duration
+    }
 
-    private var timer: Timer?
+    var progressValue: Double {
+        isActive ? progress : 1.0
+    }
+
+    private var data: Data?
 
     private let dataLoader: NetworkDataLoader
 
-    private let audioPlayerService: AudioPlayerService
+    private var audioPlayerAPI: AudioPlayerAPI
 
-    init(track: Track, dataLoader: NetworkDataLoader, audioPlayerService: AudioPlayerService) {
+    private let timerAPI: TimerAPI
+
+    init(
+        track: Track,
+        dataLoader: NetworkDataLoader,
+        audioPlayerAPI: AudioPlayerAPI,
+        timerAPI: TimerAPI
+    ) {
         self.track = track
         self.dataLoader = dataLoader
-        self.audioPlayerService = audioPlayerService
+        self.audioPlayerAPI = audioPlayerAPI
+        self.timerAPI = timerAPI
+        self.audioPlayerAPI.delegate = self
     }
+
+    // MARK: - Track loading
 
     @MainActor
     func loadTrack() async {
-        guard let url = URL(string: track.url) else { return }
-        
+        guard let url = URL(string: track.url) else {
+            state = .error
+            return
+        }
+
         state = .loading
 
         do {
@@ -51,53 +85,85 @@ final class AudioPlayerViewModel {
         }
     }
 
+    // MARK: - Playback control
+
     @MainActor
     func play() {
         guard let data else { return }
 
         do {
-            if state == .loaded {
-                try audioPlayerService.initialize(with: data)
-            }
-            
-            if state == .loaded || state == .paused {
-                audioPlayerService.play()
-                state = .playing
-                stopProgressTimer()
-                startProgressTimer()
-            } else if state == .playing {
-                audioPlayerService.pause()
-                state = .paused
-                stopProgressTimer()
+            switch state {
+            case .loaded, .paused:
+                try startPlayback(with: data)
+
+            case .playing:
+                pausePlayback()
+
+            default:
+                break
             }
         } catch {
             state = .error
         }
     }
 
+    @MainActor
+    private func startPlayback(with data: Data) throws {
+        if state == .loaded {
+            try audioPlayerAPI.initialize(with: data)
+        }
+
+        audioPlayerAPI.play()
+        state = .playing
+        timerAPI.stop()
+        startProgressTimer()
+    }
+
+    @MainActor
+    private func pausePlayback() {
+        audioPlayerAPI.pause()
+        state = .paused
+        timerAPI.stop()
+    }
+
     // MARK: - Progress tracking
 
     private func startProgressTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
-            Task { @MainActor [weak self] in
-                guard let self else { return }
-
-                let duration = audioPlayerService.duration
-
-                guard duration > 0 else { return }
-
-                currentTime = audioPlayerService.currentTime
-                progress = currentTime / duration
-            }
+        timerAPI.start { [weak self] in
+            self?.updateProgress()
         }
     }
 
-    private func stopProgressTimer() {
-        timer?.invalidate()
-        timer = nil
+    private func updateProgress() {
+        let duration = audioPlayerAPI.duration
+
+        guard duration > 0 else { return }
+
+        currentTime = audioPlayerAPI.currentTime
+        progress = currentTime / duration
     }
 
-    deinit {
-        timer?.invalidate()
+    // MARK: - Helpers
+
+    private var isActive: Bool {
+        state == .playing || state == .paused
+    }
+
+    private func formattedTime(_ time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%d:%02d", minutes, seconds)
+    }
+}
+
+// MARK: - AudioPlayerDelegate
+
+extension AudioPlayerViewModelImpl: AudioPlayerDelegate {
+
+    func didFinishPlaying() {
+        state = .initial
+        timerAPI.stop()
+        currentTime = 0
+        progress = 0
     }
 }
