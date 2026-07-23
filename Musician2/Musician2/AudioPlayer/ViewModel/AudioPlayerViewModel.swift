@@ -88,11 +88,6 @@ final class AudioPlayerViewModel {
 
                 currentTime = audioPlayerService.currentTime
                 progress = currentTime / duration
-
-                // Not working as expected
-                if progress >= 0.999 {
-                    self.state = .initial
-                }
             }
         }
     }
