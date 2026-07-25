@@ -13,7 +13,7 @@ struct AudioPlayerFeature: View {
         AudioPlayerView(
             viewModel: AudioPlayerViewModelImpl(
                 track: Track(trackId: 1, name: "Анна", url: "http://maksimn.github.io/elizarov/notebook/anna.mp3",
-                             duration: "1:08", album: nil),
+                             duration: "1:08"),
                 dataLoader: URLSessionNetworkDataLoader(),
                 audioPlayerAPI: AVAudioPlayerAPI(),
                 timerAPI: TimerAPIImpl()

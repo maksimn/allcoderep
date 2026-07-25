@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct AlbumListView: View {
     @State private var viewModel: AlbumListViewModel
@@ -48,7 +47,7 @@ struct AlbumListView: View {
 
     @ViewBuilder
     private var listContent: some View {
-        List(viewModel.albums, id: \.albumId) { album in
+        List(viewModel.albums) { album in
             AlbumRowView(album: album)
                 .listRowInsets(EdgeInsets())
                 .listRowSeparator(.hidden)
@@ -67,7 +66,6 @@ private struct AlbumRowView: View {
         let textColor = albumTextColor(for: albumColor)
 
         HStack(alignment: .top, spacing: 0) {
-            // Первый дочерний элемент: AsyncImage с фиксированными размерами и отступами
             AsyncImage(url: URL(string: album.albumCover)) { image in
                 image
                     .resizable()
@@ -79,7 +77,6 @@ private struct AlbumRowView: View {
             .padding(.top, 24)
             .padding(.leading, 24)
 
-            // Второй дочерний элемент: Контейнер, занимающий всю оставшуюся область
             VStack(alignment: .leading, spacing: 0) {
                 Text(album.albumName)
                     .font(.system(size: 17, weight: .bold))
@@ -88,7 +85,7 @@ private struct AlbumRowView: View {
                     .padding(.leading, 24)
                     .padding(.trailing, 24)
 
-                Spacer() // Толкает второй текст к нижнему краю
+                Spacer()
 
                 Text("Альбом, \(album.albumYear)")
                     .font(.system(size: 15, weight: .bold))
@@ -96,10 +93,8 @@ private struct AlbumRowView: View {
                     .padding(.bottom, 24)
                     .padding(.leading, 24)
             }
-            // Растягивает VStack на всю доступную ширину и высоту
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         }
-        // Задаем точные размеры для корневого HStack
         .frame(maxWidth: .infinity)
         .frame(height: 144)
         .background(albumColor)
@@ -132,7 +127,7 @@ private struct AlbumDetailView: View {
             }
 
             Section("Tracks") {
-                ForEach(album.tracks, id: \.trackId) { track in
+                ForEach(album.tracks) { track in
                     VStack(alignment: .leading, spacing: 4) {
                         Text(track.name)
                             .font(.body)
@@ -148,26 +143,8 @@ private struct AlbumDetailView: View {
 }
 
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Album.self, configurations: config)
-    let context = container.mainContext
-
-    let track = Track(trackId: 1, name: "Test Song", url: "https://example.com", duration: "3:45")
-    let album = Album(
-        albumId: 1,
-        albumName: "Test Album",
-        albumYear: 2024,
-        albumCover: "http://maksimn.github.io/elizarov/jpg/notebook.jpg",
-        albumMedianColor: "#FF5733",
-        tracks: [track]
-    )
-    track.album = album
-    context.insert(album)
-
-    let dataLoader = URLSessionNetworkDataLoader()
-    let repository = AlbumRepository(dataLoader: dataLoader, modelContext: context)
+    let repository = AlbumRepository(dataLoader: URLSessionNetworkDataLoader(), cacheService: FileCacheService())
     let viewModel = AlbumListViewModel(repository: repository)
 
     return AlbumListView(viewModel: viewModel)
-        .modelContainer(container)
 }

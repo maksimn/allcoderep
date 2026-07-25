@@ -6,15 +6,17 @@
 //
 
 import Foundation
-import SwiftData
 
 final class AlbumRepository {
-    private let dataLoader: NetworkDataLoader
-    private let modelContext: ModelContext
 
-    init(dataLoader: NetworkDataLoader, modelContext: ModelContext) {
+    private static let cacheFileName = "albums.json"
+
+    private let dataLoader: NetworkDataLoader
+    private let cacheService: CacheService
+
+    init(dataLoader: NetworkDataLoader, cacheService: CacheService) {
         self.dataLoader = dataLoader
-        self.modelContext = modelContext
+        self.cacheService = cacheService
     }
 
     func fetchAlbums() async throws -> [Album] {
@@ -22,17 +24,12 @@ final class AlbumRepository {
         let data = try await dataLoader.download(url)
         let albums = try JSONDecoder().decode([Album].self, from: data)
 
-        // Cache the fetched albums in SwiftData.
-        for album in albums {
-            modelContext.insert(album)
-        }
-        try modelContext.save()
+        try cacheService.save(data, to: Self.cacheFileName)
 
         return albums
     }
 
     func loadCachedAlbums() -> [Album] {
-        let descriptor = FetchDescriptor<Album>(sortBy: [SortDescriptor(\.albumId)])
-        return (try? modelContext.fetch(descriptor)) ?? []
+        (try? cacheService.load([Album].self, from: Self.cacheFileName)) ?? []
     }
 }

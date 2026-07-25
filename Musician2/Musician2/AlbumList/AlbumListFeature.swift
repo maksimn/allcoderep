@@ -6,18 +6,15 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct AlbumListFeature: View {
-
-    @Environment(\.modelContext) private var modelContext
 
     var body: some View {
         AlbumListView(
             viewModel: AlbumListViewModel(
                 repository: AlbumRepository(
                     dataLoader: URLSessionNetworkDataLoader(),
-                    modelContext: modelContext
+                    cacheService: FileCacheService()
                 )
             )
         )
