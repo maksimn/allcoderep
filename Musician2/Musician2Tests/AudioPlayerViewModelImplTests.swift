@@ -101,7 +101,10 @@ struct AudioPlayerViewModelImplTests {
     @Test("loadTrack sets state to .error on invalid URL")
     func load_invalidURL_sets_error() async {
         let badTrack = Track(trackId: 2, name: "Bad", url: "not a url", duration: "0:00")
-        let (vm, _, _, _) = makeSUT(track: badTrack)
+        let (vm, _, _, _) = makeSUT(
+            track: badTrack,
+            loaderResult: .failure(APVMI_NetworkDataLoaderFake.FakeError.failed)
+        )
         await vm.loadTrack()
         #expect(vm.state == .error)
     }
